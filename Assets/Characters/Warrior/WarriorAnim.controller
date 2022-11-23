@@ -35,7 +35,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WalkStart
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3030369575633411224}
@@ -44,13 +44,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7121436889327432511, guid: 7b76a804832d72b479fd68dad7430afb, type: 3}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: runMultiplier
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -74,7 +74,7 @@ AnimatorStateMachine:
     m_Position: {x: 816.08044, y: 231.92426, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7414289023717972594}
-    m_Position: {x: 949.0001, y: 304.94806, z: 0}
+    m_Position: {x: 940, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6027765181619223182}
     m_Position: {x: 671.80884, y: 406.58432, z: 0}
@@ -177,7 +177,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Walking
+    m_ConditionEvent: isWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6620927852203651352}
@@ -185,10 +185,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.12949705
   m_TransitionOffset: 0
-  m_ExitTime: 0.57142854
-  m_HasExitTime: 1
+  m_ExitTime: 0.0005982152
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -202,7 +202,7 @@ AnimatorController:
   m_Name: WarriorAnim
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Walking
+  - m_Name: isWalking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -211,6 +211,18 @@ AnimatorController:
   - m_Name: Attack
     m_Type: 9
     m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: isRunning
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: runMultiplier
+    m_Type: 1
+    m_DefaultFloat: 1.5
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -288,13 +300,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -8035397311307626545, guid: 7b76a804832d72b479fd68dad7430afb, type: 3}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: runMultiplier
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -340,13 +352,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 2667949614841947897, guid: 7b76a804832d72b479fd68dad7430afb, type: 3}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: runMultiplier
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -414,7 +426,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Walking
+    m_ConditionEvent: isWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3368151064966088951}
@@ -422,10 +434,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.11101543
   m_TransitionOffset: 0
-  m_ExitTime: 0.8000001
-  m_HasExitTime: 1
+  m_ExitTime: 0
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1

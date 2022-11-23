@@ -1,98 +1,123 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+
 public class PlayerController : MonoBehaviour
 {
-    public bool LockedOn = false;
-    public Transform target;
-    int animNum = 0;
-    public Animator anim;
-    float timeOfFirstButton = 0f;
-    bool pressedRecently = false;
-    public Rigidbody rb;
-    public float speed = 6;
-    private Vector3 input;
-    public Vector3 moveDir;
-    public Transform camera;
-    public float rotate;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        rb = gameObject.GetComponent<Rigidbody>();
-    }
+    Animator animator;
+    int isWalkingHash;
+    int isRunningHash;
 
-    // Update is called once per frame
-    void Update()
+    public Controls input;
+    CharacterController character;
+    bool grounded = false;
+    [SerializeField] float speed;
+    [SerializeField] float runMultiplier;
+    int runFloatHash;
+    Vector2 currentMovement;
+    bool movementPressed;
+    bool runPressed;
+    Vector3 moveVector;
+    Vector3 v;
+    
+    private void Awake()
     {
-        if (Input.GetMouseButtonDown(0))
+        character = GetComponent<CharacterController>();
+        input = new Controls();
+        currentMovement = Vector2.zero;
+        input.Player.Move.performed += ctx =>
         {
-            anim.SetBool("InCombo", true);
-            pressedRecently = true;
-        }
-        if (Input.GetMouseButton(1))
-        {
-            LockedOn = true;
-            LockOn();
-        }
-        else
-        {
-            LockedOn = false;
-            camera.gameObject.GetComponent<CinemachineBrain>().enabled = true;
-        }
-        if (!LockedOn)
-        {
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            {
-                rb.velocity = transform.forward * speed;
-                anim.SetBool("Walking", true);
-            }
+            currentMovement = ctx.ReadValue<Vector2>();
+            if (currentMovement != Vector2.zero) { movementPressed = true; }
             else
             {
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
-
-                anim.SetBool("Walking", false);
+                movementPressed = false;
             }
         }
-        else
+        ;
+        input.Player.Move.canceled += ctx =>
         {
-            input += transform.forward * Input.GetAxis("Vertical") * speed;
-            input += transform.right * Input.GetAxis("Horizontal") * speed;
-            rb.velocity = input;
-        }
-        input = new Vector3(0, 0, 0);
+            movementPressed = false;
+            currentMovement = Vector2.zero;
+        };
+        input.Player.Run.performed += ctx => runPressed = ctx.ReadValueAsButton();
+        input.Player.Run.canceled += ctx => runPressed = ctx.ReadValueAsButton();
     }
-    void LockOn()
+    private void Start()
     {
-        transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z), Vector3.up);
-        camera.gameObject.GetComponent<CinemachineBrain>().enabled = false;
-        camera.LookAt(new Vector3(target.position.x, transform.position.y+0.5f, target.position.z), Vector3.up);
+        animator = GetComponent<Animator>();
+
+        isWalkingHash = Animator.StringToHash("isWalking");
+        isRunningHash = Animator.StringToHash("isRunning");
+        runFloatHash = Animator.StringToHash("runMultiplier");
+
     }
-    void StartCycle()
+
+    private void Update()
     {
-        pressedRecently = false;
+        HandleMovement();
+
     }
-    void End()
+    void HandleMovement()
     {
-        if (!pressedRecently)
+        moveVector = (new Vector3(currentMovement.x, 0, currentMovement.y));
+
+        bool isRunning = animator.GetBool(isRunningHash);
+        bool isWalking = animator.GetBool(isWalkingHash);
+        //     bool Attack = animator.GetBool(isWalkingHash);
+        if (movementPressed && !isWalking)//start moving
         {
-            anim.SetBool("InCombo", false);
+            animator.SetBool(isWalkingHash, true);
         }
-        pressedRecently = false;
-    }
-    void End2()
-    {
-        print(pressedRecently);
-        if (!pressedRecently)
+
+        if (!movementPressed && isWalking)//stop
         {
-            anim.SetBool("InCombo", false);
+            animator.SetBool(isWalkingHash, false);
         }
-        pressedRecently = false;
+        if ((movementPressed && runPressed) && !isRunning)//start running
+        {
+            moveVector *= runMultiplier;
+            animator.SetBool(isRunningHash, true);
+        }
+        if ((!movementPressed || !runPressed) && isRunning)//stop running
+        {
+            animator.SetBool(isRunningHash, false);
+        }
+
+        if (currentMovement != Vector2.zero)
+        {
+            if (runPressed)
+            {
+                animator.SetFloat(runFloatHash, runMultiplier);
+                character.Move(moveVector * speed *runMultiplier* Time.deltaTime);
+              
+
+            }
+            else
+                
+            {
+                animator.SetFloat(runFloatHash, 1.0f);
+                character.Move(moveVector * speed * Time.deltaTime);
+
+            }
+            gameObject.transform.forward = moveVector;
+        }
+        character.Move(v * Time.deltaTime);
+
+
+     //   print(currentMovement);
+       // print(movementPressed);
+       // print(runPressed);
     }
-    void End3()
+    private void OnEnable()
     {
-        anim.SetBool("InCombo", false);
-        pressedRecently = false;
+        input.Player.Enable();
+
+    }
+    private void OnDisable()
+    {
+        input.Player.Disable();
     }
 }
