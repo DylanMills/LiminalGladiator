@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3661356, g: 0.3749194, b: 0.60951805, a: 1}
+  m_IndirectSpecularColor: {r: 0.36690903, g: 0.37030888, b: 0.592576, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -513,8 +513,133 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec6e4cd96396ca45b007eadc97829cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementInput:
+    m_Name: Movement Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a8174cad-2b38-491d-9286-998ccc317574
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: WASD
+      m_Id: d9912a10-1dd0-4581-886c-16a37887bb76
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement Input
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 27a220d4-360b-4c6a-9b17-4ac0196f7d5d
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement Input
+      m_Flags: 8
+    - m_Name: down
+      m_Id: eb9943dd-b94a-4782-8dcb-db6ac508be31
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement Input
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 33bf480f-71d0-4ae7-86b4-7290b19b57fa
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement Input
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 5fb09623-b059-4930-901c-0d0577c2da3a
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement Input
+      m_Flags: 8
+    - m_Name: 
+      m_Id: ce1cf4c3-f994-4cee-916e-badcf128bf37
+      m_Path: <Gamepad>/leftStick
+      m_Interactions: 
+      m_Processors: StickDeadzone
+      m_Groups: 
+      m_Action: Movement Input
+      m_Flags: 0
+    m_Flags: 0
   speed: 8
+  _runInput:
+    m_Name: Run Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c0071bb2-538c-4f4e-a656-e7c77cb5c9db
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c7fd1430-a9f9-46c3-b227-8d571c3f9d7c
+      m_Path: <Keyboard>/shift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Run Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 81e7e572-d8fe-4691-8af2-74b21ada4df7
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Run Input
+      m_Flags: 0
+    m_Flags: 0
   runMultiplier: 1.8
+  _jumpInput:
+    m_Name: Jump Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 94a16059-5149-46b0-a020-2163b8484b60
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 6aa1358a-314d-4094-a701-5d0f4de8d463
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump Input
+      m_Flags: 0
+    m_Flags: 0
+  jumpMultiplier: 0
+  _attackInput:
+    m_Name: Attack Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a7452f29-6e50-40e1-9fbb-526509dd39d9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 730a737d-3aff-42e3-81f8-644bf5a57749
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 675f28cb-5d08-4b43-a14f-d3a296936452
+      m_Path: <Mouse>/rightButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack Input
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1001 &1277080922
 PrefabInstance:
   m_ObjectHideFlags: 0
