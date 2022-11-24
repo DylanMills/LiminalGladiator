@@ -6,6 +6,9 @@ using UnityEngine.InputSystem.XR;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] Transform cam;
+    [SerializeField] float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
     // Animation Vars:
     CharacterController character;
     Animator animator;
@@ -25,30 +28,39 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction _runInput;
     bool runPressed;
     [SerializeField] float runMultiplier;
-    
+
     // Jumping
     [SerializeField] InputAction _jumpInput;
     [SerializeField] float jumpMultiplier;
     bool _isGrounded = false;
-    
+
     // Attacking
     [SerializeField] InputAction _attackInput;
 
     // Input Vectors
-    Vector2 currentMovement;
+    Vector2 moveInput;
     Vector3 moveVector;
-    Vector3 v;
-    
+    Vector3 velocity;
+
+
+
+    Vector3 gravity=new Vector3(0.0f,-9.81f,0.0f);
+
+
+
+
     private void Awake()
     {
+
+
         character = GetComponent<CharacterController>();
-        currentMovement = Vector2.zero;
+        moveInput = Vector2.zero;
 
         _movementInput.performed += ctx =>
         {
-            currentMovement = ctx.ReadValue<Vector2>();
+            moveInput = ctx.ReadValue<Vector2>();
 
-            if (currentMovement != Vector2.zero)
+            if (moveInput != Vector2.zero)
             {
                 movementPressed = true;
             }
@@ -61,7 +73,7 @@ public class PlayerController : MonoBehaviour
         _movementInput.canceled += ctx =>
         {
             movementPressed = false;
-            currentMovement = Vector2.zero;
+            moveInput = Vector2.zero;
         };
 
         _runInput.performed += ctx => runPressed = ctx.ReadValueAsButton();
@@ -81,55 +93,44 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
+        if (!character.isGrounded) character.Move(gravity * Time.deltaTime);//APPLY GRAVITY EVERY FRAME
     }
 
     void HandleMovement()
     {
-        moveVector = (new Vector3(currentMovement.x, 0, currentMovement.y));
-
         bool isRunning = animator.GetBool(isRunningHash);
         bool isWalking = animator.GetBool(isWalkingHash);
-        // bool Attack = animator.GetBool(isWalkingHash);
 
-        if (movementPressed && !isWalking)//start moving
-        {
-            animator.SetBool(isWalkingHash, true);
-        }
+        moveVector = (new Vector3(moveInput.x, 0, moveInput.y));
 
-        if (!movementPressed && isWalking)//stop
-        {
-            animator.SetBool(isWalkingHash, false);
-        }
+        float targetAngle = Mathf.Atan2(moveVector.normalized.x, moveVector.normalized.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
-        if ((movementPressed && runPressed) && !isRunning)//start running
-        {
-            moveVector *= runMultiplier;
-            animator.SetBool(isRunningHash, true);
-        }
+        Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-        if ((!movementPressed || !runPressed) && isRunning)//stop running
-        {
-            animator.SetBool(isRunningHash, false);
-        }
 
-        if (currentMovement != Vector2.zero)
+        if (movementPressed)
         {
-            // Run modifier
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (!isWalking) animator.SetBool(isWalkingHash, true);//start moving
+
             if (runPressed)
             {
                 animator.SetFloat(runFloatHash, runMultiplier);
-                character.Move(moveVector * speed *runMultiplier* Time.deltaTime);
-            }
-            else
-            {
-                animator.SetFloat(runFloatHash, 1.0f);
-                character.Move(moveVector * speed * Time.deltaTime);
-            }
+                moveVector *= runMultiplier;
 
-            gameObject.transform.forward = moveVector;
+                if (!isRunning) animator.SetBool(isRunningHash, true);//start running
+
+            }
+            else animator.SetFloat(runFloatHash, 1.0f);
+        }
+        else
+        {
+            if (isWalking) animator.SetBool(isWalkingHash, false);//stop moving animation
+            if (isRunning) animator.SetBool(isRunningHash, false);//stop running bool
         }
 
-        character.Move(v * Time.deltaTime);
+        character.Move((moveDir * moveVector.magnitude * speed + velocity) * Time.deltaTime);
 
         // print(currentMovement);
         // print(movementPressed);
