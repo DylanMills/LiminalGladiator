@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
     // Attacking
     [SerializeField] InputAction _attackInput;
+    [SerializeField] InputAction _heavyAttackInput;
+
+    Attack attackScript;
 
     // Input Vectors
     Vector2 moveInput;
@@ -44,16 +48,16 @@ public class PlayerController : MonoBehaviour
 
 
 
-    Vector3 gravity=new Vector3(0.0f,-9.81f,0.0f);
+    Vector3 gravity = new Vector3(0.0f,-9.81f,0.0f);
 
 
 
 
     private void Awake()
     {
-
-
         character = GetComponent<CharacterController>();
+        attackScript = GetComponent<Attack>();
+
         moveInput = Vector2.zero;
 
         _movementInput.performed += ctx =>
@@ -78,6 +82,9 @@ public class PlayerController : MonoBehaviour
 
         _runInput.performed += ctx => runPressed = ctx.ReadValueAsButton();
         _runInput.canceled += ctx => runPressed = ctx.ReadValueAsButton();
+
+        _attackInput.performed += PerformAttack;
+        _heavyAttackInput.performed += PerformHeavyAttack;
     }
 
     private void Start()
@@ -87,13 +94,12 @@ public class PlayerController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         runFloatHash = Animator.StringToHash("runMultiplier");
-
     }
 
     private void Update()
     {
         HandleMovement();
-        if (!character.isGrounded) character.Move(gravity * Time.deltaTime);//APPLY GRAVITY EVERY FRAME
+        if (!character.isGrounded) character.Move(gravity * Time.deltaTime); //APPLY GRAVITY EVERY FRAME
     }
 
     void HandleMovement()
@@ -116,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
             if (runPressed)
             {
-                animator.SetFloat(runFloatHash, runMultiplier);
+                animator.SetFloat(runFloatHash, 1.5f);
                 moveVector *= runMultiplier;
 
                 if (!isRunning) animator.SetBool(isRunningHash, true);//start running
@@ -137,6 +143,17 @@ public class PlayerController : MonoBehaviour
         // print(runPressed);
     }
 
+    void PerformAttack(InputAction.CallbackContext ctx)
+    {
+        attackScript.OnAttack();
+        animator.SetTrigger("Attack");
+    }
+    void PerformHeavyAttack(InputAction.CallbackContext ctx)
+    {
+        attackScript.OnHeavyAttack();
+        animator.SetTrigger("AttackHeavy");
+    }
+
     // Input system Enable/Disable
     private void OnEnable()
     {
@@ -144,7 +161,9 @@ public class PlayerController : MonoBehaviour
         _runInput.Enable();
         _jumpInput.Enable();
         _attackInput.Enable();
+        _heavyAttackInput.Enable();
 
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void OnDisable()
     {
@@ -152,5 +171,8 @@ public class PlayerController : MonoBehaviour
         _runInput.Disable();
         _jumpInput.Disable();
         _attackInput.Disable();
+        _heavyAttackInput.Enable();
+
+        Cursor.lockState = CursorLockMode.None;
     }
 }
