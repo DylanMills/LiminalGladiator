@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     int isWalkingHash;
     int isRunningHash;
     int runFloatHash;
+    int attackHash;
+    int attackHeavyHash;
 
     // Input Vars:
     public Controls input;
@@ -94,6 +96,8 @@ public class PlayerController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
         runFloatHash = Animator.StringToHash("runMultiplier");
+        attackHash = Animator.StringToHash("Attack");
+        attackHeavyHash = Animator.StringToHash("AttackHeavy");
     }
 
     private void Update()
@@ -137,21 +141,15 @@ public class PlayerController : MonoBehaviour
         }
 
         character.Move((moveDir * moveVector.magnitude * speed + velocity) * Time.deltaTime);
-
-        // print(currentMovement);
-        // print(movementPressed);
-        // print(runPressed);
     }
 
     void PerformAttack(InputAction.CallbackContext ctx)
     {
-        attackScript.OnAttack();
-        animator.SetTrigger("Attack");
+        attackScript.OnAttack(animator, attackHash);
     }
     void PerformHeavyAttack(InputAction.CallbackContext ctx)
     {
-        attackScript.OnHeavyAttack();
-        animator.SetTrigger("AttackHeavy");
+        attackScript.OnHeavyAttack(animator, attackHeavyHash);
     }
 
     // Input system Enable/Disable

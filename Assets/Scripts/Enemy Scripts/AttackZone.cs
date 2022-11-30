@@ -4,23 +4,53 @@ using UnityEngine;
 
 public class AttackZone : MonoBehaviour
 {
-    public List<IDamageable> Damageables { get; } = new();//The interfaces are put in a list to apply to varying objects.
+    public List<IDamageable> Damageables { get; } = new(); //The interfaces are put in a list to apply to varying objects.
+    int hitDamage;
+
+    Collider hitbox;
+
+    private void Awake()
+    {
+        if (hitbox == null)
+            hitbox = GetComponent<Collider>();
+
+        hitbox.isTrigger = true;
+        DisableHitbox();
+    }
+
+    public void EnableHitbox(int damage)
+    {
+        hitDamage = damage;
+        hitbox.enabled = true;
+    }
+    public void DisableHitbox()
+    {
+        hitbox.enabled = false;
+        hitDamage = 0;
+        Damageables.Clear();
+    }
 
     public void OnTriggerEnter(Collider other)
     {
-        var damageable = other.GetComponent<IDamageable>();//When the an object with the interface enters the attack zone trigger, the object is 
-        if (damageable != null)                            //added to the list of interfaces.
+        if (other.TryGetComponent(out IDamageable damageable)) //When the an object with the interface enters the attack zone trigger, the object is..
         {
-            Damageables.Add(damageable);
+            if (!Damageables.Contains(damageable))
+                damageable.Damage(hitDamage);
+
+            Debug.Log("found damageable");
+
+            Damageables.Add(damageable);                       //added to the list of interfaces.
         }
     }
 
+    /*
     public void OnTriggerExit(Collider other)
     {
-        var damageable = other.GetComponent<IDamageable>();//When the an object leaves the trigger, it is temporarily removed from the list until it
-        if (damageable != null && Damageables.Contains(damageable))//enters the list again.
-        {
-            Damageables.Remove(damageable);
-        }
+        if (other.TryGetComponent(out IDamageable damageable))  //When the an object leaves the trigger, it is temporarily removed from the list until it
+            if (Damageables.Contains(damageable))               //enters the list again.
+            {
+                Damageables.Remove(damageable);
+            }
     }
+    */
 }

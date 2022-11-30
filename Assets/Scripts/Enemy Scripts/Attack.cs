@@ -6,41 +6,47 @@ using UnityEngine.InputSystem;
 public class Attack : MonoBehaviour
 {
     [SerializeField]
-    private float DamageAfterTime;//How long it takes for an attack to occur.
-
+    private int baseDamage;
     [SerializeField]
-    private float HeavyDamageAfterTime;//How long it takes for a heavy attack to occur.
-
+    private float attackStartup;//How long it takes for an attack to occur.
     [SerializeField]
-    private int damage;//Damage amount.
+    private float attackLength;//How long until the attack should stop checking for damageables
+    [SerializeField]
+    private float heavyAttackStartup;
+    [SerializeField]
+    private float heavyAttackLength;
 
     [SerializeField]
     private AttackZone attackZone;//This represents our collider attack zone.
 
-    private bool isAttacking;//Is the character attacking.
+    private bool isAttacking;//Is the character attacking?
      
-    public void OnAttack(/*InputValue val*/)//When attacking, the coroutine starts with the heavy boolean being false.
+    public void OnAttack(Animator animator, int animHash)
     {
-        if (isAttacking) return;//This boolean let's us know that attacking process of the coroutine has begun.
-        StartCoroutine(Strike(false));
-        Debug.Log("Attack.");
+        if (isAttacking) return;//This boolean lets us know that attacking process of the coroutine has begun.
+
+        StartCoroutine(Strike(baseDamage, attackStartup, attackLength));
+        animator.SetTrigger(animHash);
     }
-    public void OnHeavyAttack(/*InputValue val*/)//When heavily attacking, the coroutine starts with the heavy boolean being true.
+    public void OnHeavyAttack(Animator animator, int animHash)
     {
         if (isAttacking) return;
-        StartCoroutine(Strike(true));
-        Debug.Log("Heavy Attack.");
+
+        StartCoroutine(Strike(baseDamage * 3, heavyAttackStartup, heavyAttackLength));
+        animator.SetTrigger(animHash);
     }
 
-    private IEnumerator Strike(bool heavy)
+    private IEnumerator Strike(int damage, float startup, float hitLength)
     {
         isAttacking = true;//The attacking process has started.
-        yield return new WaitForSeconds(heavy ? HeavyDamageAfterTime : DamageAfterTime);
-        foreach (var attackZoneDamageable in attackZone.Damageables)
-        {
-            attackZoneDamageable.Damage(damage * (heavy ? 3 : 1));
-        }
-        yield return new WaitForSeconds(heavy ? HeavyDamageAfterTime : DamageAfterTime);
+        yield return new WaitForSeconds(startup);
+
+        attackZone.EnableHitbox(damage);
+
+        yield return new WaitForSeconds(hitLength);
+
+        attackZone.DisableHitbox();
+
         isAttacking = false;//The attacking process has ended.
     }
 }
