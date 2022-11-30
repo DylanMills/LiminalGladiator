@@ -8,22 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BronzeEdge
-    second: {fileID: 2100000, guid: 4115a51b66d2eba4c8795187a507133d, type: 2}
+    second: {fileID: 2100000, guid: bb3c42195dab80040a7638080c878a0f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ShieldBack
-    second: {fileID: 2100000, guid: f4e1d7bc29269314e81d9c75e67260c2, type: 2}
+    second: {fileID: 2100000, guid: a622712c964ac674daf797864831317a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ShieldFront
-    second: {fileID: 2100000, guid: 8dbad0d291db8274a9a85f8e1de599ae, type: 2}
+    second: {fileID: 2100000, guid: 68dadfa45cfaa704a96385a35d9eac4a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: SteelButt
-    second: {fileID: 2100000, guid: 59290dfcc15a52145b3a32fff889f5a3, type: 2}
+    second: {fileID: 2100000, guid: c9fc3ad10fd49364e8509c8942077fe7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -33,7 +33,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Wood
-    second: {fileID: 2100000, guid: 51e52abecb48a9f41bac5394a9fb0b28, type: 2}
+    second: {fileID: 2100000, guid: 154b6e498c190634cb3f6e9b47aea1d0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

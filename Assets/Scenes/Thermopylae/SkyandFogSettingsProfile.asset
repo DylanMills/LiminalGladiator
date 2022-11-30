@@ -230,7 +230,7 @@ MonoBehaviour:
     m_Value: 68
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 373.9
+    m_Value: 375.36
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
@@ -242,7 +242,7 @@ MonoBehaviour:
     m_Value: 1
   depthExtent:
     m_OverrideState: 1
-    m_Value: 39.7
+    m_Value: 20
   denoisingMode:
     m_OverrideState: 0
     m_Value: 2
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Value: 0
   skyAmbientMode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   windOrientation:
     m_OverrideState: 1
     m_Value: 0
