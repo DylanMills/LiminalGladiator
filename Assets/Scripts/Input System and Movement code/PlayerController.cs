@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.XR;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Transform cam;
-    [SerializeField] float turnSmoothTime = 0.1f;
+    [SerializeField] float turnSmoothTime = 0.2f;
     float turnSmoothVelocity;
     // Animation Vars:
     CharacterController character;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     // Jumping
     [SerializeField] InputAction _jumpInput;
     [SerializeField] float jumpMultiplier;
-    bool _isGrounded = false;
+    //bool _isGrounded = false;
 
     // Attacking
     [SerializeField] InputAction _attackInput;
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
         bool isRunning = animator.GetBool(isRunningHash);
         bool isWalking = animator.GetBool(isWalkingHash);
 
-        moveVector = (new Vector3(moveInput.x, 0, moveInput.y));
+        moveVector = new Vector3(moveInput.x, 0, moveInput.y);
 
         float targetAngle = Mathf.Atan2(moveVector.normalized.x, moveVector.normalized.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             if (isRunning) animator.SetBool(isRunningHash, false);//stop running bool
         }
 
-        character.Move((moveDir * moveVector.magnitude * speed + velocity) * Time.deltaTime);
+        character.Move((moveDir * (moveVector.magnitude * speed * (attackScript.isAttacking ? .1f : 1f)) + velocity) * Time.deltaTime);
     }
 
     void PerformAttack(InputAction.CallbackContext ctx)

@@ -19,7 +19,7 @@ public class Attack : MonoBehaviour
     [SerializeField]
     private AttackZone attackZone;//This represents our collider attack zone.
 
-    private bool isAttacking;//Is the character attacking?
+    public bool isAttacking;//Is the character attacking?
      
     public void OnAttack(Animator animator, int animHash)
     {

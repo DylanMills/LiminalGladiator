@@ -11,6 +11,9 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
     // TODO use animation hashes
 
+    [SerializeField]
+    Collider hitbox;
+
     float attackTimer;
     [SerializeField]
     float attackSpeed;
@@ -29,12 +32,15 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        transform.LookAt(new Vector3(playerTrans.position.x, transform.position.y, playerTrans.position.z), Vector3.up);
+        if (Vector3.Distance(transform.position, playerTrans.position) < 10)
+        {
+            transform.LookAt(new Vector3(playerTrans.position.x, transform.position.y, playerTrans.position.z), Vector3.up);
 
-        attackTimer -= Time.fixedDeltaTime;
+            attackTimer -= Time.fixedDeltaTime;
 
-        if (attackTimer <= 0)
-            Attack();
+            if (attackTimer <= 0)
+                Attack();
+        }
     }
 
     public void Damage(int damage, float knockback)
@@ -60,6 +66,17 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
     {
         animator.SetTrigger("Attack");
 
+        StartCoroutine(Strike());
+
         attackTimer = attackSpeed + Random.Range(-attackSpeedMargin, attackSpeedMargin);
+    }
+
+    IEnumerator Strike()
+    {
+        hitbox.enabled = true;
+
+        yield return new WaitForSeconds(.3f);
+
+        hitbox.enabled = false;
     }
 }
