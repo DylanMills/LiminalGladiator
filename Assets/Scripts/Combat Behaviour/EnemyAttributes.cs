@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,9 +33,11 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, playerTrans.position) < 10)
+        if (Vector3.Distance(transform.position, playerTrans.position) < 25)
         {
-            transform.LookAt(new Vector3(playerTrans.position.x, transform.position.y, playerTrans.position.z), Vector3.up);
+            Quaternion rot = Quaternion.LookRotation(DirToPlayer(), Vector3.up);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 2);
 
             attackTimer -= Time.fixedDeltaTime;
 
@@ -45,10 +48,13 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
     public void Damage(int damage, float knockback)
     {
-        Debug.Log($"I've been struck! -{damage}");
+        if (Vector3.Dot(DirToPlayer(), transform.forward) <= 0)
+            damage *= 2;
+
+            Debug.Log($"I've been struck! -{damage}");
         health -= damage;
 
-        animator.SetTrigger("Stagger");
+        animator.SetTrigger("Stunned");
         body.AddForce((transform.position - playerTrans.position).normalized * knockback, ForceMode.Impulse);
 
         if (health <= 0)
@@ -68,15 +74,20 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
         StartCoroutine(Strike());
 
-        attackTimer = attackSpeed + Random.Range(-attackSpeedMargin, attackSpeedMargin);
+        attackTimer = attackSpeed + UnityEngine.Random.Range(-attackSpeedMargin, attackSpeedMargin);
     }
 
     IEnumerator Strike()
     {
         hitbox.enabled = true;
 
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.5f);
 
         hitbox.enabled = false;
+    }
+
+    Vector3 DirToPlayer()
+    {
+        return (new Vector3(playerTrans.position.x, transform.position.y, playerTrans.position.z) - transform.position).normalized;
     }
 }

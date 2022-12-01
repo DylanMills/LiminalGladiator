@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-        if (!character.isGrounded) character.Move(gravity * Time.deltaTime); //APPLY GRAVITY EVERY FRAME
+        if (!character.isGrounded) character.Move(gravity * 3f * Time.deltaTime); //APPLY GRAVITY EVERY FRAME
     }
 
     void HandleMovement()
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             if (isRunning) animator.SetBool(isRunningHash, false);//stop running bool
         }
 
-        character.Move((moveDir * (moveVector.magnitude * speed * (attackScript.isAttacking ? .1f : 1f)) + velocity) * Time.deltaTime);
+        character.Move((moveDir * (moveVector.magnitude * speed * (attackScript.isAttacking ? .25f : 1f)) + velocity) * Time.deltaTime);
     }
 
     void PerformAttack(InputAction.CallbackContext ctx)
@@ -155,6 +155,15 @@ public class PlayerController : MonoBehaviour
     // Input system Enable/Disable
     private void OnEnable()
     {
+        EnableControls();
+    }
+    private void OnDisable()
+    {
+        DisableControls();
+    }
+
+    public void EnableControls()
+    {
         _movementInput.Enable();
         _runInput.Enable();
         _jumpInput.Enable();
@@ -163,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
     }
-    private void OnDisable()
+    public void DisableControls()
     {
         _movementInput.Disable();
         _runInput.Disable();

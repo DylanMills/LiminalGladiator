@@ -25,6 +25,8 @@ public class HealthBar : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        fillTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (player.health / 100f) * maxWidth);
+
+        barImage.sprite = player.health <= 25 ? barSpriteDamaged : barSpriteNormal;
     }
 }
