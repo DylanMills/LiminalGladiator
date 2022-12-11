@@ -2140,8 +2140,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078523116556574120}
-  m_LocalRotation: {x: -0.13539821, y: 0.5604719, z: 0.093495525, w: 0.81166327}
-  m_LocalPosition: {x: -935.1482, y: 100.00001, z: -354.26028}
+  m_LocalRotation: {x: 0.16443633, y: 0.0933549, z: -0.015634937, w: 0.9818356}
+  m_LocalPosition: {x: 2451.6155, y: 527.0743, z: 1348.3318}
   m_LocalScale: {x: 33.333336, y: 33.333336, z: 33.333336}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5036,7 +5036,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3226810514573705184}
-  m_LocalRotation: {x: -0.12061207, y: 0.5620798, z: 0.08328537, w: 0.81399184}
+  m_LocalRotation: {x: -0.3479322, y: -0.43649042, z: -0.18792215, w: 0.8081489}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5075,7 +5075,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
-    NearClipPlane: 0.01
+    NearClipPlane: 5.65
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -5156,7 +5156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -30}
+  m_FollowOffset: {x: 0, y: 3, z: -8.6}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5168,7 +5168,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: -126
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -5248,7 +5248,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3226810514684112523}
-  m_LocalRotation: {x: -0.15010068, y: 0.55868345, z: 0.103647895, w: 0.8090734}
+  m_LocalRotation: {x: -0.37705854, y: -0.4293761, z: -0.20365363, w: 0.7949769}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5287,7 +5287,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
-    NearClipPlane: 0.01
+    NearClipPlane: 5.65
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -5368,7 +5368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -30}
+  m_FollowOffset: {x: 0, y: 3, z: -8.6}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5380,7 +5380,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: -126
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -5495,7 +5495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -30}
+  m_FollowOffset: {x: 0, y: 3, z: -8.6}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -5507,7 +5507,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: -126
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -5587,7 +5587,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3226810516241411408}
-  m_LocalRotation: {x: -0.1353982, y: 0.56047183, z: 0.09349551, w: 0.81166327}
+  m_LocalRotation: {x: -0.36257446, y: -0.43300006, z: -0.19583063, w: 0.80168647}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5626,7 +5626,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
-    NearClipPlane: 0.01
+    NearClipPlane: 5.65
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -5674,7 +5674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3226810516247782292}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -935.1482, y: 100.00001, z: -354.26028}
+  m_LocalPosition: {x: 239.72984, y: 100.00001, z: -157.18588}
   m_LocalScale: {x: 33.333336, y: 33.333336, z: 33.333336}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5708,7 +5708,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
-    NearClipPlane: 0.01
+    NearClipPlane: 5.65
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -5774,7 +5774,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 4
-    m_Bias: 0
+    m_Bias: -126
   m_RecenterToTargetHeading:
     m_enabled: 0
     m_WaitTime: 1
@@ -5785,11 +5785,11 @@ MonoBehaviour:
   m_SplineCurvature: 0.2
   m_Orbits:
   - m_Height: 22.57
-    m_Radius: 25
+    m_Radius: 21.9
   - m_Height: 3
-    m_Radius: 30
+    m_Radius: 8.6
   - m_Height: 0
-    m_Radius: 15
+    m_Radius: 7.2
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 3226810514573705185}
