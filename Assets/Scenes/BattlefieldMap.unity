@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 268.3662, g: 182.10645, b: 144.84985, a: 1}
+  m_IndirectSpecularColor: {r: 268.33325, g: 181.98975, b: 144.6311, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5041,7 +5041,7 @@ Terrain:
   m_TreeCrossFadeLength: 200
   m_TreeMaximumFullLODCount: 845
   m_DetailObjectDistance: 250
-  m_DetailObjectDensity: 0
+  m_DetailObjectDensity: 0.95
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -5427,7 +5427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4360949142895146015, guid: b60d1f75a518a5b419b570d56e4cbb7e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.67171943
+      value: 0.6717194
       objectReference: {fileID: 0}
     - target: {fileID: 4360949142895146015, guid: b60d1f75a518a5b419b570d56e4cbb7e, type: 3}
       propertyPath: m_LocalRotation.x

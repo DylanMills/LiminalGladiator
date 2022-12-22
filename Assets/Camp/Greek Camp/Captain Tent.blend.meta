@@ -32,6 +32,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Steel
+    second: {fileID: 2100000, guid: 4a40d939ac6afcd43996f0c633ca5a51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Tent
     second: {fileID: 2100000, guid: 711e86ece567a574eb4827ebff774f79, type: 2}
   - first:
