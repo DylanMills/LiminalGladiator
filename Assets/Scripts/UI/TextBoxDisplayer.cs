@@ -99,7 +99,7 @@ public class TextBoxDisplayer : MonoBehaviour
 
             characterIndex++;
 
-            yield return new WaitForSeconds(skipText ? .01f : .03f);
+            yield return new WaitForSeconds(skipText ? .001f : .03f);
         }
 
         textDisplayFinished = true;

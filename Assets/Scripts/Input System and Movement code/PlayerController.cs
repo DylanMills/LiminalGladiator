@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     int attackHash;
     int attackHeavyHash;
 
+
     // Input Vars:
     public Controls input;
 
@@ -34,9 +35,16 @@ public class PlayerController : MonoBehaviour
 
     // Jumping
     [SerializeField] InputAction _jumpInput;
-    [SerializeField] float jumpMultiplier;
-    //bool _isGrounded = false;
-
+    bool jumpPressed;
+    bool midJump = false;
+   
+    public float jumpVelocity = 5f;
+    public float distanceToGround = 0.1f;
+  [SerializeField]  public LayerMask groundLayer;
+    private CapsuleCollider col;
+    private Rigidbody rb;
+    [SerializeField] const float jumpTimer=50f;
+    float _jumpTimer;
     // Attacking
     [SerializeField] InputAction _attackInput;
     [SerializeField] InputAction _heavyAttackInput;
@@ -53,12 +61,20 @@ public class PlayerController : MonoBehaviour
     Vector3 gravity = new Vector3(0.0f,-9.81f,0.0f);
 
 
-
+    private bool IsGrounded()
+    {
+        Vector3 capsuleBottom = new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z);
+        bool grounded = Physics.CheckCapsule(col.bounds.center, capsuleBottom, distanceToGround, groundLayer,
+        QueryTriggerInteraction.Ignore);
+        return grounded;
+    }
 
     private void Awake()
     {
         character = GetComponent<CharacterController>();
         attackScript = GetComponent<Attack>();
+        col = GetComponent<CapsuleCollider>();
+        _jumpTimer = jumpTimer;
 
         moveInput = Vector2.zero;
 
@@ -84,9 +100,13 @@ public class PlayerController : MonoBehaviour
 
         _runInput.performed += ctx => runPressed = ctx.ReadValueAsButton();
         _runInput.canceled += ctx => runPressed = ctx.ReadValueAsButton();
+        _jumpInput.performed += ctx => jumpPressed = ctx.ReadValueAsButton();
+        _jumpInput.canceled += ctx => jumpPressed = ctx.ReadValueAsButton();
+
 
         _attackInput.performed += PerformAttack;
         _heavyAttackInput.performed += PerformHeavyAttack;
+
     }
 
     private void Start()
@@ -117,8 +137,14 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-
+        if (jumpPressed &&_jumpTimer>0)
+        {
+            character.Move(Vector3.up * jumpVelocity * Time.deltaTime * _jumpTimer);
+                       _jumpTimer--;
+        }
+        if (IsGrounded())
+        {                        _jumpTimer = jumpTimer;
+        }
         if (movementPressed)
         {
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -152,6 +178,10 @@ public class PlayerController : MonoBehaviour
         attackScript.OnHeavyAttack(animator, attackHeavyHash);
     }
 
+    void PerformJump(InputAction.CallbackContext ctx)
+    {
+        rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+    }
     // Input system Enable/Disable
     private void OnEnable()
     {
