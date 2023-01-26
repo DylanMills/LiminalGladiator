@@ -20,10 +20,19 @@ public class Attack : MonoBehaviour
     private AttackZone attackZone;//This represents our collider attack zone.
 
     public bool isAttacking;//Is the character attacking?
-     
+
+    ComboCounter comboCounterScript;
+
+    private void Awake()
+    {
+        comboCounterScript = GetComponent<ComboCounter>();
+    }
+
     public void OnAttack(Animator animator, int animHash)
     {
         if (isAttacking) return;//This boolean lets us know that attacking process of the coroutine has begun.
+
+        animator.SetInteger("comboCount", comboCounterScript.attackCombo); // inform the animator of which attack anim to play
 
         StartCoroutine(Strike(baseDamage, attackStartup, attackLength));
         animator.SetTrigger(animHash);
@@ -48,5 +57,6 @@ public class Attack : MonoBehaviour
         attackZone.DisableHitbox();
 
         isAttacking = false;//The attacking process has ended.
+        comboCounterScript.AttackIncrement(); // increase the attack counter
     }
 }

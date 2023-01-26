@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ComboCounter : MonoBehaviour
 {
+    public int maxAttackCombo;
+    public int attackCombo;
+
     public int combo = 0;
-    public Text comboCount;
-    public float lastHitTime = 0;
-    public bool visible = true; 
-    private IEnumerator timer;
-    public void Start()
+
+    Text comboCount;
+    float lastHitTime = 0;
+    bool visible = true; 
+    
+    void Update()
     {
-    }
-    public void Update()
-    {
-        if(Time.time - lastHitTime >= 2)
+        if (IsComboBroken())
         {
-            comboCount.enabled = false;
+            //comboCount.enabled = false;
             combo = 0;
         }
     }
@@ -26,5 +27,21 @@ public class ComboCounter : MonoBehaviour
         combo++;
         comboCount.text = combo.ToString();
         lastHitTime = Time.time;
+    }
+
+    public void AttackIncrement()
+    {
+        attackCombo++;
+        if (attackCombo > maxAttackCombo) ResetAttackCounter();
+        Invoke(nameof(ResetAttackCounter), 1f);
+    }
+    void ResetAttackCounter()
+    {
+        attackCombo = 0;
+    }
+
+    bool IsComboBroken()
+    {
+        return Time.time - lastHitTime >= 2;
     }
 }
