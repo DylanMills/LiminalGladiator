@@ -5706,7 +5706,7 @@ MonoBehaviour:
   m_Follow: {fileID: 5937725187014774478}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 60.51
     OrthographicSize: 10
     NearClipPlane: 5.65
     FarClipPlane: 5000
@@ -10940,7 +10940,7 @@ Transform:
   m_GameObject: {fileID: 6425749593150428276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1036.34, y: 15.82, z: 1209.04}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4284429392301299559}
@@ -11045,7 +11045,7 @@ MonoBehaviour:
       m_Action: Movement Input
       m_Flags: 0
     m_Flags: 0
-  speed: 50
+  speed: 18
   _runInput:
     m_Name: Run Input
     m_Type: 0
@@ -11071,10 +11071,10 @@ MonoBehaviour:
       m_Action: Run Input
       m_Flags: 0
     m_Flags: 0
-  runMultiplier: 2
+  runMultiplier: 1.8
   _jumpInput:
     m_Name: Jump Input
-    m_Type: 0
+    m_Type: 2
     m_ExpectedControlType: 
     m_Id: 94a16059-5149-46b0-a020-2163b8484b60
     m_Processors: 
@@ -11089,11 +11089,11 @@ MonoBehaviour:
       m_Action: Jump Input
       m_Flags: 0
     m_Flags: 0
-  jumpVelocity: 5
-  distanceToGround: 0.1
+  jumpVelocity: 2
+  distanceToGround: 0.5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _attackInput:
     m_Name: Attack Input
     m_Type: 0
@@ -11142,6 +11142,23 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Heavy Attack Input
+      m_Flags: 0
+    m_Flags: 0
+  _interactAction:
+    m_Name: Interact
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 1d0d38e3-1c47-4102-a73c-6d03e4ea168a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f3966cbe-b9af-465f-9524-f47847903d45
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
       m_Flags: 0
     m_Flags: 0
 --- !u!136 &2402444809768114268

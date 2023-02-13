@@ -16,7 +16,27 @@ public class TextBoxDisplayer : MonoBehaviour
 
     bool showText;
 
-    public string[] texts;
+    static string[][] sequenceList = 
+    {
+        new string[]
+        {
+            "Welcome, weary warrior. Do you remember where you are?",
+            "...Not a worry, you will soon remember.",
+            "For now, I present to you a task: there is a camp of legionaires nearby, you must take them down.",
+            "Complete this task, and return here. More will await you.",
+            "...And remember, you can move using the [WASD] keys, and perform attacks using [LEFT MOUSE] and [RIGHT MOUSE]."
+        },
+        new string[]
+        {
+            "A job well done indeed. Are you beginning to understand who you are?",
+            "...",
+            "...No matter, simply continue along your quests and it shall occur to you.",
+            "The path is now cleared; proceed through the arch just outside to reach Thermopylae fields."
+        }
+    };
+    static int sequenceIndex;
+
+    string[] texts;
     string displayText;
 
     int currentIndex;
@@ -24,35 +44,60 @@ public class TextBoxDisplayer : MonoBehaviour
     bool skipText;
     bool textDisplayFinished;
 
+    static bool playedFirstSequence;
+
     void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
 
-        showText = texts != null;
-
         displayText = "empty";
-        textDisplayFinished = true;
 
-        currentIndex = -1;
-
-        TryDisplayNextText();
-    }
-
-    private void OnEnable()
-    {
-        // re init the textbox
-        currentIndex = 0;
-        showText = texts != null;
-        TryDisplayNextText();
+        if (!playedFirstSequence)
+        {
+            BeginNewDialogue();
+            playedFirstSequence = true;
+        }
+        else
+        {
+            CloseTextbox();
+        }
 
         skipButton.performed += ctx => TryDisplayNextText();
+    }
+
+    public void BeginNewDialogue()
+    {
+        // re init the textbox
+        currentIndex = -1;
+        textDisplayFinished = true;
+
+        texts = sequenceList[sequenceIndex++]; // set the displaying text sequence to the current one on the list, and increase the index for next time.
+
+        OpenTextbox();
+        TryDisplayNextText();
+
+
+    }
+
+    void OpenTextbox()
+    {
+        textBox.CrossFadeAlpha(1f, .1f, false);
+        textBackdrop.CrossFadeAlpha(.75f, .1f, false);
+        textButton.color = Color.white;
+
+        showText = texts != null;
         skipButton.Enable();
 
         playerController.DisableControls();
     }
 
-    private void OnDisable()
+    public void CloseTextbox()
     {
+        textBox.CrossFadeAlpha(0f, .25f, false);
+        textBackdrop.CrossFadeAlpha(0f, .25f, false);
+        textButton.color = Color.clear;
+
+        showText = false;
         skipButton.Disable();
 
         playerController.EnableControls();
@@ -103,16 +148,6 @@ public class TextBoxDisplayer : MonoBehaviour
         }
 
         textDisplayFinished = true;
-    }
-
-    public void CloseTextbox()
-    {
-        textBox.CrossFadeAlpha(0f, .25f, false);
-        textBackdrop.CrossFadeAlpha(0f, .25f, false);
-        textButton.color = Color.clear;
-        enabled = false;
-
-        showText = false;
     }
 
     // alternates between true and false based on the time interval

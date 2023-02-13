@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
    
     public float jumpVelocity = 5f;
     public float distanceToGround = 0.1f;
-  [SerializeField]  public LayerMask groundLayer;
+    [SerializeField]  public LayerMask groundLayer;
     private CapsuleCollider col;
     private Rigidbody rb;
     [SerializeField] const float jumpTimer=50f;
@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
     // Attacking
     [SerializeField] InputAction _attackInput;
     [SerializeField] InputAction _heavyAttackInput;
+
+    [SerializeField] InputAction _interactAction;
+    bool canInteract;
 
     Attack attackScript;
 
@@ -103,10 +106,20 @@ public class PlayerController : MonoBehaviour
         _jumpInput.performed += ctx => jumpPressed = ctx.ReadValueAsButton();
         _jumpInput.canceled += ctx => jumpPressed = ctx.ReadValueAsButton();
 
-
         _attackInput.performed += PerformAttack;
         _heavyAttackInput.performed += PerformHeavyAttack;
 
+        _interactAction.performed += PerformInteract;
+    }
+
+    private void PerformInteract(InputAction.CallbackContext obj)
+    {
+        if (true /* check for canInteract once implemented*/)
+        {
+            var textDisplayer = FindObjectOfType<TextBoxDisplayer>();
+
+            textDisplayer.BeginNewDialogue();
+        }
     }
 
     private void Start()
@@ -199,6 +212,7 @@ public class PlayerController : MonoBehaviour
         _jumpInput.Enable();
         _attackInput.Enable();
         _heavyAttackInput.Enable();
+        _interactAction.Enable();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -208,7 +222,8 @@ public class PlayerController : MonoBehaviour
         _runInput.Disable();
         _jumpInput.Disable();
         _attackInput.Disable();
-        _heavyAttackInput.Enable();
+        _heavyAttackInput.Disable();
+        _interactAction.Disable();
 
         Cursor.lockState = CursorLockMode.None;
     }

@@ -703,13 +703,13 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 6
   m_Resolution:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 2
   m_HighQualityFiltering:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   m_PhysicallyBased:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
 --- !u!114 &825911108198211867
 MonoBehaviour:
