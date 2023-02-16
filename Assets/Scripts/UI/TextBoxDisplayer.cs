@@ -31,7 +31,12 @@ public class TextBoxDisplayer : MonoBehaviour
             "A job well done indeed. Are you beginning to understand who you are?",
             "...",
             "...No matter, simply continue along your quests and it shall occur to you.",
-            "The path is now cleared; proceed through the arch just outside to reach Thermopylae fields."
+            "The path is now cleared; proceed through the path just outside to reach Thermopylae fields."
+        },
+        new string[]
+        {
+            "You have arrived. You know the drill.",
+            "Strike down your enemies, and this area will have been conquered."
         }
     };
     static int sequenceIndex;
