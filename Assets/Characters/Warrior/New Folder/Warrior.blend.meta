@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 7b76a804832d72b479fd68dad7430afb
 ModelImporter:
-  serializedVersion: 22102
+  serializedVersion: 22103
   internalIDToNameTable:
   - first:
       74: -623603649343465320
@@ -122,14 +122,14 @@ ModelImporter:
       takeName: Scene
       internalID: 0
       firstFrame: 1
-      lastFrame: 15
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 1
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -150,8 +150,8 @@ ModelImporter:
       name: WalkStart
       takeName: Scene
       internalID: 0
-      firstFrame: 15
-      lastFrame: 20
+      firstFrame: 115
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -179,8 +179,8 @@ ModelImporter:
       name: Walk
       takeName: Scene
       internalID: 0
-      firstFrame: 20
-      lastFrame: 50
+      firstFrame: 121
+      lastFrame: 155
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -208,8 +208,8 @@ ModelImporter:
       name: WalkEnd
       takeName: Scene
       internalID: 0
-      firstFrame: 50
-      lastFrame: 55
+      firstFrame: 156
+      lastFrame: 160
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -403,6 +403,7 @@ ModelImporter:
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
