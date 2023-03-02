@@ -43,7 +43,7 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: 36dd385e759c96147b6463dcd1149c11, type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
-    name: Medium Quality
+    name: Optimized Quality
     pixelLightCount: 2
     shadows: 2
     shadowResolution: 1
