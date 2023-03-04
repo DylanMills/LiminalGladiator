@@ -16,7 +16,7 @@ public class TextBoxDisplayer : MonoBehaviour
 
     bool showText;
 
-    static string[][] sequenceList = 
+    static string[][] sequenceList =
     {
         new string[]
         {

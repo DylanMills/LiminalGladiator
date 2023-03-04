@@ -9,7 +9,7 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
     Rigidbody body;
 
     Transform playerTrans;
-
+    PlayerAttributes playerAttributes;
     // TODO use animation hashes
 
     [SerializeField]
@@ -27,6 +27,7 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
         body = GetComponent<Rigidbody>();
+        playerAttributes = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
 
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -51,12 +52,12 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
         if (Vector3.Dot(DirToPlayer(), transform.forward) <= 0)
             damage *= 2;
 
-            Debug.Log($"I've been struck! -{damage}");
+        Debug.Log($"I've been struck! -{damage}");
         health -= damage;
 
         animator.SetTrigger("Stunned");
         body.AddForce((transform.position - playerTrans.position).normalized * knockback, ForceMode.Impulse);
-
+        playerAttributes.BuildMeter(damage * 5);
         if (health <= 0)
             Die();
     }

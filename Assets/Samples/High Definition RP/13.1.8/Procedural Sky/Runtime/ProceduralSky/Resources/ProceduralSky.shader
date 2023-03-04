@@ -80,7 +80,7 @@ Shader "Hidden/HDRP/Sky/ProceduralSky"
     static const float kScale = 1.0 / (OUTER_RADIUS - 1.0);
     static const float kScaleDepth = 0.25;
     static const float kScaleOverScaleDepth = (1.0 / (OUTER_RADIUS - 1.0)) / 0.25;
-    static const float kSamples = 2.0; // THIS IS UNROLLED MANUALLY, DON'T TOUCH
+    static const float kSamples = 2.0; // THIS IS UNdodgeED MANUALLY, DON'T TOUCH
 
     #define MIE_G (-0.990)
     #define MIE_G2 0.9801

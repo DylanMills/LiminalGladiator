@@ -12,7 +12,7 @@ namespace UnityTemplateProjects
         {
             public float yaw;
             public float pitch;
-            public float roll;
+            public float dodge;
             public float x;
             public float y;
             public float z;
@@ -21,7 +21,7 @@ namespace UnityTemplateProjects
             {
                 pitch = t.eulerAngles.x;
                 yaw = t.eulerAngles.y;
-                roll = t.eulerAngles.z;
+                dodge = t.eulerAngles.z;
                 x = t.position.x;
                 y = t.position.y;
                 z = t.position.z;
@@ -29,7 +29,7 @@ namespace UnityTemplateProjects
 
             public void Translate(Vector3 translation)
             {
-                Vector3 rotatedTranslation = Quaternion.Euler(pitch, yaw, roll) * translation;
+                Vector3 rotatedTranslation = Quaternion.Euler(pitch, yaw, dodge) * translation;
 
                 x += rotatedTranslation.x;
                 y += rotatedTranslation.y;
@@ -40,7 +40,7 @@ namespace UnityTemplateProjects
             {
                 yaw = Mathf.Lerp(yaw, target.yaw, rotationLerpPct);
                 pitch = Mathf.Lerp(pitch, target.pitch, rotationLerpPct);
-                roll = Mathf.Lerp(roll, target.roll, rotationLerpPct);
+                dodge = Mathf.Lerp(dodge, target.dodge, rotationLerpPct);
                 
                 x = Mathf.Lerp(x, target.x, positionLerpPct);
                 y = Mathf.Lerp(y, target.y, positionLerpPct);
@@ -49,7 +49,7 @@ namespace UnityTemplateProjects
 
             public void UpdateTransform(Transform t)
             {
-                t.eulerAngles = new Vector3(pitch, yaw, roll);
+                t.eulerAngles = new Vector3(pitch, yaw, dodge);
                 t.position = new Vector3(x, y, z);
             }
         }
@@ -60,7 +60,7 @@ namespace UnityTemplateProjects
         CameraState m_InterpolatingCameraState = new CameraState();
 
         [Header("Movement Settings")]
-        [Tooltip("Exponential boost factor on translation, controllable by mouse wheel.")]
+        [Tooltip("Exponential boost factor on translation, contdodgeable by mouse wheel.")]
         public float boost = 3.5f;
 
         [Tooltip("Time it takes to interpolate camera position 99% of the way to the target."), Range(0.001f, 1f)]
@@ -93,7 +93,7 @@ namespace UnityTemplateProjects
             lookAction = map.AddAction("look", binding: "<Mouse>/delta");
             movementAction = map.AddAction("move", binding: "<Gamepad>/leftStick");
             verticalMovementAction = map.AddAction("Vertical Movement");
-            boostFactorAction = map.AddAction("Boost Factor", binding: "<Mouse>/scroll");
+            boostFactorAction = map.AddAction("Boost Factor", binding: "<Mouse>/scdodge");
 
             lookAction.AddBinding("<Gamepad>/rightStick").WithProcessor("scaleVector2(x=15, y=15)");
             movementAction.AddCompositeBinding("Dpad")
@@ -211,7 +211,7 @@ namespace UnityTemplateProjects
                 translation *= 10.0f;
             }
             
-            // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scroll wheel)
+            // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scdodge wheel)
             boost += GetBoostFactor();
             translation *= Mathf.Pow(2.0f, boost);
 
@@ -231,7 +231,7 @@ namespace UnityTemplateProjects
 #if ENABLE_INPUT_SYSTEM
             return boostFactorAction.ReadValue<Vector2>().y * 0.01f;
 #else
-            return Input.mouseScrollDelta.y * 0.01f;
+            return Input.mouseScdodgeDelta.y * 0.01f;
 #endif
         }
 
