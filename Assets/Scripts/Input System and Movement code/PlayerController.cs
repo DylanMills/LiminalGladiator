@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -59,10 +60,11 @@ public class PlayerController : MonoBehaviour
     Vector3 moveVector;
     Vector3 velocity;
 
-
-
     Vector3 gravity = new Vector3(0.0f,-9.81f,0.0f);
 
+    // camera input stuff (kinda spaghetti)
+    CinemachineInputProvider cameraInputProvider;
+    InputActionReference cameraXYinputRef;
 
     private bool IsGrounded()
     {
@@ -110,6 +112,9 @@ public class PlayerController : MonoBehaviour
         _heavyAttackInput.performed += PerformHeavyAttack;
 
         _interactAction.performed += PerformInteract;
+
+        cameraInputProvider = GetComponentInChildren<CinemachineInputProvider>();
+        cameraXYinputRef = cameraInputProvider.XYAxis;
     }
 
     private void PerformInteract(InputAction.CallbackContext obj)
@@ -214,6 +219,8 @@ public class PlayerController : MonoBehaviour
         _heavyAttackInput.Enable();
         _interactAction.Enable();
 
+        cameraInputProvider.XYAxis = cameraXYinputRef;
+
         Cursor.lockState = CursorLockMode.Locked;
     }
     public void DisableControls()
@@ -224,6 +231,8 @@ public class PlayerController : MonoBehaviour
         _attackInput.Disable();
         _heavyAttackInput.Disable();
         _interactAction.Disable();
+
+        cameraInputProvider.XYAxis = null;
 
         Cursor.lockState = CursorLockMode.None;
     }
