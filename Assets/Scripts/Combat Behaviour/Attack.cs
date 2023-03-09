@@ -15,13 +15,16 @@ public class Attack : MonoBehaviour
     private float heavyAttackStartup;
     [SerializeField]
     private float heavyAttackLength;
-
+    [SerializeField]
+    private float specialAttackStartup;
+    [SerializeField]
+    private float specialAttackLength;
     [SerializeField]
     private AttackZone attackZone;//This represents our collider attack zone.
 
     public bool isAttacking;//Is the character attacking?
 
-    ComboCounter comboCounterScript;
+    public ComboCounter comboCounterScript;
 
     private void Awake()
     {
@@ -32,7 +35,7 @@ public class Attack : MonoBehaviour
     {
         if (isAttacking) return;//This boolean lets us know that attacking process of the coroutine has begun.
 
-        animator.SetInteger("comboCount", comboCounterScript.attackCombo); // inform the animator of which attack anim to play
+        animator.SetInteger("comboCount", comboCounterScript.combo); // inform the animator of which attack anim to play
 
         StartCoroutine(Strike(baseDamage, attackStartup, attackLength));
         animator.SetTrigger(animHash);
@@ -40,10 +43,21 @@ public class Attack : MonoBehaviour
     public void OnHeavyAttack(Animator animator, int animHash)
     {
         if (isAttacking) return;
+        animator.SetInteger("comboCount", comboCounterScript.combo); // inform the animator of which attack anim to play
 
-        StartCoroutine(Strike(baseDamage * 3, heavyAttackStartup, heavyAttackLength));
-        animator.SetTrigger(animHash);
-    }
+        if (comboCounterScript.combo == 0)
+        {
+            StartCoroutine(Strike(baseDamage * 3, specialAttackStartup, specialAttackLength));
+            print("Special Attack!");
+            animator.SetTrigger(animHash);
+        }
+        else
+        {
+            StartCoroutine(Strike(baseDamage * 3, heavyAttackStartup, heavyAttackLength));
+            animator.SetTrigger(animHash);
+        } 
+    } 
+    
 
     private IEnumerator Strike(int damage, float startup, float hitLength)
     {
@@ -57,6 +71,6 @@ public class Attack : MonoBehaviour
         attackZone.DisableHitbox();
 
         isAttacking = false;//The attacking process has ended.
-        comboCounterScript.AttackIncrement(); // increase the attack counter
+        comboCounterScript.ComboIncrement(); // increase the attack counter
     }
 }

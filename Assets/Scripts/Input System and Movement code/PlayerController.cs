@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     int runFloatHash;
     int attackHash;
     int attackHeavyHash;
+    int attackSpecialHash;
 
 
     // Input Vars:
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
     // Attacking
     [SerializeField] InputAction _attackInput;
     [SerializeField] InputAction _heavyAttackInput;
+
 
     [SerializeField] InputAction _interactAction;
     bool canInteract;
@@ -136,6 +138,7 @@ public class PlayerController : MonoBehaviour
         runFloatHash = Animator.StringToHash("runMultiplier");
         attackHash = Animator.StringToHash("Attack");
         attackHeavyHash = Animator.StringToHash("AttackHeavy");
+        attackSpecialHash = Animator.StringToHash("Attack");
     }
 
     private void Update()
@@ -193,8 +196,16 @@ public class PlayerController : MonoBehaviour
     }
     void PerformHeavyAttack(InputAction.CallbackContext ctx)
     {
-        attackScript.OnHeavyAttack(animator, attackHeavyHash);
+        if (attackScript.comboCounterScript.combo==2)
+        {
+            attackScript.OnHeavyAttack(animator, attackHeavyHash);
+        }
+        else
+        {
+            attackScript.OnHeavyAttack(animator, attackSpecialHash);
+        }
     }
+
 
     void PerformJump(InputAction.CallbackContext ctx)
     {
