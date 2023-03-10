@@ -93,37 +93,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack_Guard
-      takeName: Rig|Attack
-      internalID: -3510217540682870009
-      firstFrame: 2
-      lastFrame: 29
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Idle_Guard
-      takeName: Rig|GuardIdle
+      name: Rig|Rig|GuardIdle
+      takeName: Rig|Rig|GuardIdle
       internalID: 5002832165618124970
       firstFrame: 0
       lastFrame: 79
@@ -151,11 +122,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Attack
-      takeName: Rig|V1
+      name: Attack (1)
+      takeName: Attack
       internalID: -7528376427918284719
-      firstFrame: 0
-      lastFrame: 121
+      firstFrame: 4
+      lastFrame: 27.5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -180,10 +151,39 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hitstun
-      takeName: Rig|Stunned
-      internalID: 5724747671090186184
-      firstFrame: 1.2
+      name: Death
+      takeName: Death
+      internalID: 7881823016275210079
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rig|Rig|Stunned
+      takeName: Rig|Rig|Stunned
+      internalID: -2036977289897664616
+      firstFrame: 0
       lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0

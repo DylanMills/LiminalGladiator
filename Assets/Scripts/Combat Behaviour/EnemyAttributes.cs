@@ -26,6 +26,10 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
     private void Awake()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
+        if(animator == null)
+        {
+            animator = transform.GetComponent<Animator>();
+        }
         body = GetComponent<Rigidbody>();
         playerAttributes = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
 
@@ -46,7 +50,15 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
                 Attack();
         }
     }
+    void Update()
+    {
+        print("Test");
+        if (health <= 0)
+        {
+            animator.SetBool("Dead", true);
 
+        }
+    }
     public void Damage(int damage, float knockback)
     {
         if (Vector3.Dot(DirToPlayer(), transform.forward) <= 0)
@@ -58,15 +70,13 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
         animator.SetTrigger("Stunned");
         body.AddForce((transform.position - playerTrans.position).normalized * knockback, ForceMode.Impulse);
         playerAttributes.BuildMeter(damage * 5);
-        if (health <= 0)
-            Die();
     }
 
     void Die()
     {
-        // TODO play death animation, queue death events
-
-        Destroy(gameObject);
+        animator.SetBool("Alive", false);
+        print("dead");
+        //Destroy(gameObject);
     }
 
     void Attack()

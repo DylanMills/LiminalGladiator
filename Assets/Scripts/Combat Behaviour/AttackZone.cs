@@ -6,7 +6,8 @@ public class AttackZone : MonoBehaviour
 {
     public List<IDamageable> Damageables { get; } = new(); //The interfaces are put in a list to apply to varying objects.
     int hitDamage;
-
+    public GameObject blood;
+    public GameObject shockwavePrefab;
     Collider hitbox;
 
     private void Awake()
@@ -35,14 +36,30 @@ public class AttackZone : MonoBehaviour
         if (other.TryGetComponent(out IDamageable damageable)) //When the an object with the interface enters the attack zone trigger, the object is..
         {
             if (!Damageables.Contains(damageable))
+            {
+                blood.GetComponent<ParticleSystem>().Emit(30);
                 damageable.Damage(hitDamage);
+            }
 
             Debug.Log("found damageable");
 
             Damageables.Add(damageable);                       //added to the list of interfaces.
         }
+        if (other.gameObject.tag == "Ground")
+        {
+            SpawnShockwave(new Vector3(transform.position.x, transform.position.y+5, transform.position.z));
+        }
     }
 
+    public void OnTriggerExit(Collider other)
+    {
+        blood.GetComponent<ParticleSystem>().Emit(0);
+    }
+
+    public void SpawnShockwave(Vector3 location)
+    {
+        Instantiate(shockwavePrefab, location, Quaternion.identity);
+    }
     /*
     public void OnTriggerExit(Collider other)
     {
