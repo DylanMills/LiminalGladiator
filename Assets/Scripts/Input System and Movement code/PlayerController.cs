@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     int runFloatHash;
     int attackHash;
     int attackHeavyHash;
+    int attackSpecialHash;
 
 
     // Input Vars:
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction _attackInput;
     [SerializeField] InputAction _heavyAttackInput;
 
+
     [SerializeField] InputAction _interactAction;
     bool canInteract;
 
@@ -59,10 +62,11 @@ public class PlayerController : MonoBehaviour
     Vector3 moveVector;
     Vector3 velocity;
 
-
-
     Vector3 gravity = new Vector3(0.0f,-9.81f,0.0f);
 
+    // camera input stuff (kinda spaghetti)
+    CinemachineInputProvider cameraInputProvider;
+    InputActionReference cameraXYinputRef;
 
     private bool IsGrounded()
     {
@@ -110,6 +114,9 @@ public class PlayerController : MonoBehaviour
         _heavyAttackInput.performed += PerformHeavyAttack;
 
         _interactAction.performed += PerformInteract;
+
+        cameraInputProvider = GetComponentInChildren<CinemachineInputProvider>();
+        cameraXYinputRef = cameraInputProvider.XYAxis;
     }
 
     private void PerformInteract(InputAction.CallbackContext obj)
@@ -131,6 +138,7 @@ public class PlayerController : MonoBehaviour
         runFloatHash = Animator.StringToHash("runMultiplier");
         attackHash = Animator.StringToHash("Attack");
         attackHeavyHash = Animator.StringToHash("AttackHeavy");
+        attackSpecialHash = Animator.StringToHash("Attack");
     }
 
     private void Update()
@@ -188,8 +196,16 @@ public class PlayerController : MonoBehaviour
     }
     void PerformHeavyAttack(InputAction.CallbackContext ctx)
     {
-        attackScript.OnHeavyAttack(animator, attackHeavyHash);
+        if (attackScript.comboCounterScript.combo==2)
+        {
+            attackScript.OnHeavyAttack(animator, attackHeavyHash);
+        }
+        else
+        {
+            attackScript.OnHeavyAttack(animator, attackSpecialHash);
+        }
     }
+
 
     void PerformJump(InputAction.CallbackContext ctx)
     {
@@ -214,6 +230,8 @@ public class PlayerController : MonoBehaviour
         _heavyAttackInput.Enable();
         _interactAction.Enable();
 
+        cameraInputProvider.XYAxis = cameraXYinputRef;
+
         Cursor.lockState = CursorLockMode.Locked;
     }
     public void DisableControls()
@@ -224,6 +242,8 @@ public class PlayerController : MonoBehaviour
         _attackInput.Disable();
         _heavyAttackInput.Disable();
         _interactAction.Disable();
+
+        cameraInputProvider.XYAxis = null;
 
         Cursor.lockState = CursorLockMode.None;
     }

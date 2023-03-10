@@ -12,6 +12,8 @@ public class TextBoxDisplayer : MonoBehaviour
     [SerializeField] Image textButton;
     [SerializeField] InputAction skipButton;
 
+    [SerializeField] GameObject selectWindow;
+
     PlayerController playerController;
 
     bool showText;
@@ -24,7 +26,8 @@ public class TextBoxDisplayer : MonoBehaviour
             "...Not a worry, you will soon remember.",
             "For now, I present to you a task: there is a camp of legionaires nearby, you must take them down.",
             "Complete this task, and return here. More will await you.",
-            "...And remember, you can move using the [WASD] keys, and perform attacks using [LEFT MOUSE] and [RIGHT MOUSE]."
+            "...And remember, you can move using the [WASD] keys, and perform attacks using [LEFT MOUSE] and [RIGHT MOUSE].",
+            "DEFEAT 3 LEGIONAIRES"
         },
         new string[]
         {
@@ -36,7 +39,8 @@ public class TextBoxDisplayer : MonoBehaviour
         new string[]
         {
             "You have arrived. You know the drill.",
-            "Strike down your enemies, and this area will have been conquered."
+            "Strike down your enemies, and this area will have been conquered.",
+            "DEFEAT 5 LEGIONARIES"
         }
     };
     static int sequenceIndex;
@@ -54,6 +58,8 @@ public class TextBoxDisplayer : MonoBehaviour
     void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
+
+        selectWindow.SetActive(false);
 
         displayText = "empty";
 
@@ -98,6 +104,8 @@ public class TextBoxDisplayer : MonoBehaviour
 
     public void CloseTextbox()
     {
+        selectWindow.SetActive(false);
+
         textBox.CrossFadeAlpha(0f, .25f, false);
         textBackdrop.CrossFadeAlpha(0f, .25f, false);
         textButton.color = Color.clear;
@@ -151,6 +159,9 @@ public class TextBoxDisplayer : MonoBehaviour
 
             yield return new WaitForSeconds(skipText ? .001f : .03f);
         }
+
+        if (currentIndex == texts.Length - 1 && sequenceIndex != 2)
+            selectWindow.SetActive(true);
 
         textDisplayFinished = true;
     }

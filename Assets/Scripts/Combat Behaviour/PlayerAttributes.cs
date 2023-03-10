@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerAttributes : MonoBehaviour
 {
     CharacterController Controller;
+    ScreenShake screenShakeScript;
 
     public int health = 100;
     private bool invuln = false;
@@ -16,6 +17,7 @@ public class PlayerAttributes : MonoBehaviour
     private void Awake()
     {
         Controller = GetComponent<CharacterController>();
+        screenShakeScript = GetComponent<ScreenShake>();
         fullMeterUI.SetActive(false);
     }
     public void BuildMeter(int amount)
@@ -49,6 +51,8 @@ public class PlayerAttributes : MonoBehaviour
         health -= damage;
 
         Controller.Move(-transform.forward);
+
+        screenShakeScript.ShakeScreen();
 
         if (health <= 0)
             Die();

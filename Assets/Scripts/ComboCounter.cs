@@ -4,44 +4,36 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ComboCounter : MonoBehaviour
 {
-    public int maxAttackCombo;
-    public int attackCombo;
-
+    public int maxCombo;
     public int combo = 0;
 
-    Text comboCount;
+   // Text comboCount;
     float lastHitTime = 0;
-    bool visible = true; 
+//    bool visible = true; 
     
     void Update()
     {
-        if (IsComboBroken())
-        {
-            //comboCount.enabled = false;
-            combo = 0;
-        }
+        if (IsComboBroken())    ResetCombo();
+
     }
     public void ComboIncrement()
     {
-        comboCount.enabled = true;
+      
+        if (combo >= maxCombo) ResetCombo();
         combo++;
-        comboCount.text = combo.ToString();
         lastHitTime = Time.time;
+     //   comboCount.text = combo.ToString();
+   
     }
 
-    public void AttackIncrement()
+
+    void ResetCombo()
     {
-        attackCombo++;
-        if (attackCombo > maxAttackCombo) ResetAttackCounter();
-        Invoke(nameof(ResetAttackCounter), 1f);
-    }
-    void ResetAttackCounter()
-    {
-        attackCombo = 0;
+        combo = 0;
     }
 
     bool IsComboBroken()
     {
-        return Time.time - lastHitTime >= 2;
+        return Time.time - lastHitTime >= 1;
     }
 }
