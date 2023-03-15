@@ -73,4 +73,14 @@ public class PlayerAttributes : MonoBehaviour
         Debug.Log("Died");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pickup"))
+        {
+            health = Mathf.Min(health + 20, 100);
+
+            Destroy(other.gameObject);
+        }
+    }
 }

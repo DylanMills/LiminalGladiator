@@ -37,7 +37,7 @@ public class AttackZone : MonoBehaviour
         {
             if (!Damageables.Contains(damageable))
             {
-                blood.GetComponent<ParticleSystem>().Emit(30);
+                //blood.GetComponent<ParticleSystem>().Emit(30);
                 damageable.Damage(hitDamage);
             }
 
@@ -53,13 +53,15 @@ public class AttackZone : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        blood.GetComponent<ParticleSystem>().Emit(0);
+        //blood.GetComponent<ParticleSystem>().Emit(0);
     }
 
     public void SpawnShockwave(Vector3 location)
     {
-        Instantiate(shockwavePrefab, location, Quaternion.identity);
+        //Instantiate(shockwavePrefab, location, Quaternion.identity);
     }
+
+
     /*
     public void OnTriggerExit(Collider other)
     {

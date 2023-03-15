@@ -23,6 +23,8 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
     public int health = 100;
 
+    [SerializeField] GameObject healthPickupPrefab;
+
     private void Awake()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
@@ -52,11 +54,9 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
     }
     void Update()
     {
-        print("Test");
         if (health <= 0)
         {
-            animator.SetBool("Dead", true);
-
+            Die();
         }
     }
     public void Damage(int damage, float knockback)
@@ -74,9 +74,14 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
     void Die()
     {
-        animator.SetBool("Alive", false);
+        animator.SetBool("Dead", true);
         print("dead");
-        //Destroy(gameObject);
+        Destroy(gameObject, 2f);
+
+        if (UnityEngine.Random.Range(0, 3) == 0)
+            Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
+
+        enabled = false;
     }
 
     void Attack()
