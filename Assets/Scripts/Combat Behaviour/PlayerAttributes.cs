@@ -25,6 +25,8 @@ public class PlayerAttributes : MonoBehaviour
         meter += amount;
         if (meter > 99)
         {
+            screenShakeScript.ShakeScreen(.1f, .5f);
+
             meter = 100;
             fullMeter = true;
             fullMeterUI.SetActive(true);
@@ -37,14 +39,14 @@ public class PlayerAttributes : MonoBehaviour
     }
     public void SpendMeter()
     {
-        if (fullMeter)
-        {
-            meter = 0;
-            fullMeter = false;
-        }
+        screenShakeScript.ShakeScreen(1.5f, 1f);
 
+        meter = 0;
+        fullMeter = false;
 
+        fullMeterUI.SetActive(false);
     }
+
     public void TakeDamage(int damage)
     {
         if (invuln) return;
@@ -52,7 +54,7 @@ public class PlayerAttributes : MonoBehaviour
 
         Controller.Move(-transform.forward);
 
-        screenShakeScript.ShakeScreen();
+        screenShakeScript.ShakeScreen(.25f, 2f);
 
         if (health <= 0)
             Die();

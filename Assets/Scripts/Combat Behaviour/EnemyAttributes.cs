@@ -7,6 +7,7 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 {
     Animator animator;
     Rigidbody body;
+    VanishObj vanishScript;
 
     Transform playerTrans;
     PlayerAttributes playerAttributes;
@@ -33,9 +34,10 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
             animator = transform.GetComponent<Animator>();
         }
         body = GetComponent<Rigidbody>();
-        playerAttributes = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
+        vanishScript = GetComponent<VanishObj>();
 
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        playerAttributes = playerTrans.GetComponent<PlayerAttributes>();
     }
 
     private void FixedUpdate()
@@ -64,7 +66,6 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
         if (Vector3.Dot(DirToPlayer(), transform.forward) <= 0)
             damage *= 2;
 
-        Debug.Log($"I've been struck! -{damage}");
         health -= damage;
 
         animator.SetTrigger("Stunned");
@@ -75,11 +76,12 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
     void Die()
     {
         animator.SetBool("Dead", true);
-        print("dead");
         Destroy(gameObject, 2f);
 
         if (UnityEngine.Random.Range(0, 3) == 0)
-            Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
+            Instantiate(healthPickupPrefab, transform.position + Vector3.up, Quaternion.identity);
+
+        vanishScript.StartEffect(2.1f);
 
         enabled = false;
     }

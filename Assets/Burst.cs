@@ -39,7 +39,7 @@ public class Burst : MonoBehaviour
         controller = GetComponent<CharacterController>();
         playerController = GetComponent<PlayerController>();
     }
-    public void OnAttack(Animator animator, int animHash)
+    public void OnAttack()
     {
         if (isAttacking) return;//This boolean lets us know that attacking process of the coroutine has begun.
 

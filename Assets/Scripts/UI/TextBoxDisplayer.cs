@@ -157,7 +157,7 @@ public class TextBoxDisplayer : MonoBehaviour
 
             characterIndex++;
 
-            yield return new WaitForSeconds(skipText ? .001f : .03f);
+            yield return null /*new WaitForSeconds(skipText ? .0001f : .01f)*/;
         }
 
         if (currentIndex == texts.Length - 1 && sequenceIndex != 2)

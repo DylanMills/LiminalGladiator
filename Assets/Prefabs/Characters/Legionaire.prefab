@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6791193228085742813}
   - component: {fileID: 6791193228085742814}
   - component: {fileID: 6791193228085742815}
+  - component: {fileID: 7232062140331925699}
   m_Layer: 0
   m_Name: Legionaire
   m_TagString: Untagged
@@ -82,6 +83,24 @@ MonoBehaviour:
   attackSpeedMargin: 0.25
   health: 50
   healthPickupPrefab: {fileID: 139774726270745415, guid: 11a2c8fc2102c3744b0cd2c88c5d091c, type: 3}
+--- !u!114 &7232062140331925699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791193228085742800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67990eb616122e24ea73434774e6847b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vanishEffectMaterial: {fileID: 2100000, guid: bbd412646be2c8e42b8f5ea82fa51c3f, type: 2}
+  objRenderers:
+  - {fileID: 2317229317242055578}
+  - {fileID: 4489116163878755533}
+  - {fileID: 6007160731280472139}
+  - {fileID: 3031117442939861371}
 --- !u!1001 &7637007726860447470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +160,21 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 01925ca06a4e2724fa1f7db4cc0e88ab, type: 3}
+--- !u!137 &2317229317242055578 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3903378592817789580, guid: 01925ca06a4e2724fa1f7db4cc0e88ab, type: 3}
+  m_PrefabInstance: {fileID: 7637007726860447470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3031117442939861371 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4328896774870296683, guid: 01925ca06a4e2724fa1f7db4cc0e88ab, type: 3}
+  m_PrefabInstance: {fileID: 7637007726860447470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4489116163878755533 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6318710039198249507, guid: 01925ca06a4e2724fa1f7db4cc0e88ab, type: 3}
+  m_PrefabInstance: {fileID: 7637007726860447470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4825404307299575372 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6121696230598440798, guid: 01925ca06a4e2724fa1f7db4cc0e88ab, type: 3}
@@ -172,6 +206,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351b839816f88f04db97644df6d417e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &6007160731280472139 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4998535117656041819, guid: 01925ca06a4e2724fa1f7db4cc0e88ab, type: 3}
+  m_PrefabInstance: {fileID: 7637007726860447470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7295114245356852159 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 01925ca06a4e2724fa1f7db4cc0e88ab, type: 3}
