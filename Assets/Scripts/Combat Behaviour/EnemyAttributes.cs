@@ -81,7 +81,7 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
         if (UnityEngine.Random.Range(0, 3) == 0)
             Instantiate(healthPickupPrefab, transform.position + Vector3.up, Quaternion.identity);
 
-        vanishScript.StartEffect(2.1f);
+        vanishScript.StartEffect(1.8f);
 
         enabled = false;
     }
