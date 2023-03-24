@@ -6,7 +6,6 @@ public class Dodge : MonoBehaviour
 {
     public float dodgeDistance = 20f; // the distance to dodge
     public float dodgeTime = 0.75f; // the duration of the dodge
-    public KeyCode dodgeButton = KeyCode.R; // the button to trigger the dodge
     public AnimationCurve dodgeCurve; // the curve used to lerp the dodge distance
 
     public List<SkinnedMeshRenderer> playerRenderer; // Mesh renderers to disable while dodging
@@ -27,13 +26,10 @@ public class Dodge : MonoBehaviour
         playerController = GetComponent<PlayerController>();
     }
 
-    // update method to check for input and trigger dodge
-    void Update()
+    // called from PlayerController on the dodge input action
+    public void InputDodge()
     {
-        if (Input.GetKeyDown(dodgeButton) && !isDodging)
-        {
-            StartCoroutine(DoDodge());
-        }
+        StartCoroutine(DoDodge());
     }
 
     // coroutine to perform the dodge

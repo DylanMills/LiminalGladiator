@@ -34,9 +34,9 @@ public class VanishObj : MonoBehaviour
 
         while (t < 1)
         {
-            t = Mathf.Min(t + Time.deltaTime * (1f / length), 1f);
+            t += Time.deltaTime * (1f / length);
 
-            vanishEffectMaterial.SetFloat("VanishAmount", t);
+            vanishEffectMaterial.SetFloat("_VanishAmount", Mathf.Min(t, 1f));
 
             yield return null;
         }

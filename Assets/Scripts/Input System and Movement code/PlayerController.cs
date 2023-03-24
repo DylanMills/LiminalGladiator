@@ -47,15 +47,22 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] const float jumpTimer=50f;
     float _jumpTimer;
+
     // Attacking
     [SerializeField] InputAction _attackInput;
     [SerializeField] InputAction _heavyAttackInput;
+    Attack attackScript;
 
-
+    // Text Prompts
     [SerializeField] InputAction _interactAction;
     bool canInteract;
 
-    Attack attackScript;
+    // Abilities
+    [SerializeField] InputAction _burstAction;
+    [SerializeField] InputAction _dodgeAction;
+    Burst burstScript;
+    Dodge dodgeScript;
+    
 
     // Input Vectors
     Vector2 moveInput;
@@ -80,6 +87,8 @@ public class PlayerController : MonoBehaviour
     {
         character = GetComponent<CharacterController>();
         attackScript = GetComponent<Attack>();
+        burstScript = GetComponent<Burst>();
+        dodgeScript = GetComponent<Dodge>();
         col = GetComponent<CapsuleCollider>();
         _jumpTimer = jumpTimer;
 
@@ -113,21 +122,14 @@ public class PlayerController : MonoBehaviour
         _attackInput.performed += PerformAttack;
         _heavyAttackInput.performed += PerformHeavyAttack;
 
+        _burstAction.performed += PerformBurst;
+        _dodgeAction.performed += PerformDodge;
+
         _interactAction.performed += PerformInteract;
 
         cameraInputProvider = GetComponentInChildren<CinemachineInputProvider>();
         cameraXYinputRef = cameraInputProvider.XYAxis;
-    }
-
-    private void PerformInteract(InputAction.CallbackContext obj)
-    {
-        if (true /* check for canInteract once implemented*/)
-        {
-            var textDisplayer = FindObjectOfType<TextBoxDisplayer>();
-
-            textDisplayer.BeginNewDialogue();
-        }
-    }
+    }    
 
     private void Start()
     {
@@ -138,7 +140,7 @@ public class PlayerController : MonoBehaviour
         runFloatHash = Animator.StringToHash("runMultiplier");
         attackHash = Animator.StringToHash("Attack");
         attackHeavyHash = Animator.StringToHash("AttackHeavy");
-        attackSpecialHash = Animator.StringToHash("Attack");
+        attackSpecialHash = Animator.StringToHash("AOEAttack");
     }
 
     private void Update()
@@ -160,11 +162,12 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         if (jumpPressed &&_jumpTimer>0)
         {
-            character.Move(Vector3.up * jumpVelocity * Time.deltaTime * _jumpTimer);
+            character.Move(Vector3.up * (jumpVelocity * Time.deltaTime * _jumpTimer));
                        _jumpTimer--;
         }
         if (IsGrounded())
-        {                        _jumpTimer = jumpTimer;
+        {                        
+            _jumpTimer = jumpTimer;
         }
         if (movementPressed)
         {
@@ -187,7 +190,7 @@ public class PlayerController : MonoBehaviour
             if (isRunning) animator.SetBool(isRunningHash, false);//stop running bool
         }
 
-        character.Move((moveDir * (moveVector.magnitude * speed * (attackScript.isAttacking ? .25f : 1f)) + velocity) * Time.deltaTime);
+        character.Move((moveDir * (moveVector.magnitude * speed * (attackScript.isAttacking ? .1f : 1f)) + velocity) * Time.deltaTime);
     }
 
     void PerformAttack(InputAction.CallbackContext ctx)
@@ -206,6 +209,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void PerformDodge(InputAction.CallbackContext obj)
+    {
+        dodgeScript.InputDodge();
+    }
+
+    private void PerformBurst(InputAction.CallbackContext obj)
+    {
+        burstScript.InputBurst(animator, attackSpecialHash);
+    }
+
+    private void PerformInteract(InputAction.CallbackContext obj)
+    {
+        if (true /* check for canInteract once implemented*/)
+        {
+            var textDisplayer = FindObjectOfType<TextBoxDisplayer>();
+
+            textDisplayer.BeginNewDialogue();
+        }
+    }
 
     void PerformJump(InputAction.CallbackContext ctx)
     {
@@ -229,6 +251,8 @@ public class PlayerController : MonoBehaviour
         _attackInput.Enable();
         _heavyAttackInput.Enable();
         _interactAction.Enable();
+        _burstAction.Enable();
+        _dodgeAction.Enable();
 
         cameraInputProvider.XYAxis = cameraXYinputRef;
 
@@ -242,9 +266,14 @@ public class PlayerController : MonoBehaviour
         _attackInput.Disable();
         _heavyAttackInput.Disable();
         _interactAction.Disable();
+        _burstAction.Disable();
+        _dodgeAction.Disable();
 
         cameraInputProvider.XYAxis = null;
-
+    }
+    public void DisableControlsWithCursorUnlock()
+    {
+        DisableControls();
         Cursor.lockState = CursorLockMode.None;
     }
 }

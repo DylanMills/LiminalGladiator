@@ -17567,7 +17567,7 @@ Transform:
   - {fileID: 1514415938910510322}
   - {fileID: 1771761364239871239}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1375023355638444830
 Animator:
@@ -17692,7 +17692,7 @@ MonoBehaviour:
       m_Action: Movement Input
       m_Flags: 0
     m_Flags: 0
-  speed: 20
+  speed: 18
   _runInput:
     m_Name: Run Input
     m_Type: 0
@@ -17808,6 +17808,40 @@ MonoBehaviour:
       m_Action: Interact
       m_Flags: 0
     m_Flags: 0
+  _burstAction:
+    m_Name: Burst
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: b17dda54-9be4-4487-b799-1f6b270f460e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e046cd3a-1a69-4eca-81fc-c7c8e661c9ea
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Burst
+      m_Flags: 0
+    m_Flags: 0
+  _dodgeAction:
+    m_Name: Dodge
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 18877d87-a9c2-44e2-804c-522b9e594396
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 47aa6409-bd95-4e35-895e-16ae7ec64c3e
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dodge
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &4791695713761490459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17820,7 +17854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03897e99ae7cb3b4fa3453861aeadb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCombo: 0
+  maxCombo: 3
   combo: 0
 --- !u!114 &4791695713761490456
 MonoBehaviour:
@@ -17858,7 +17892,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dodgeDistance: 75
   dodgeTime: 0.5
-  dodgeButton: 118
   dodgeCurve:
     serializedVersion: 2
     m_Curve:
@@ -17919,7 +17952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e81d4fcc1a51024682d719de789d9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burstButton: 113
   particles: {fileID: 1946310716}
   baseDamage: 1000
   attackStartup: 0.1

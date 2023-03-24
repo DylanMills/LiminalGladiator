@@ -25,7 +25,7 @@ public class PlayerAttributes : MonoBehaviour
         meter += amount;
         if (meter > 99)
         {
-            screenShakeScript.ShakeScreen(.1f, .5f);
+            screenShakeScript.ShakeScreen(.1f, .75f);
 
             meter = 100;
             fullMeter = true;
@@ -39,7 +39,7 @@ public class PlayerAttributes : MonoBehaviour
     }
     public void SpendMeter()
     {
-        screenShakeScript.ShakeScreen(1.5f, 1f);
+        screenShakeScript.ShakeScreen(2.5f, 1.25f);
 
         meter = 0;
         fullMeter = false;

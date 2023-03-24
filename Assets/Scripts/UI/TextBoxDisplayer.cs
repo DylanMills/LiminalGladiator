@@ -50,7 +50,6 @@ public class TextBoxDisplayer : MonoBehaviour
 
     int currentIndex;
 
-    bool skipText;
     bool textDisplayFinished;
 
     static bool playedFirstSequence;
@@ -99,7 +98,7 @@ public class TextBoxDisplayer : MonoBehaviour
         showText = texts != null;
         skipButton.Enable();
 
-        playerController.DisableControls();
+        playerController.DisableControlsWithCursorUnlock();
     }
 
     public void CloseTextbox()
@@ -120,8 +119,6 @@ public class TextBoxDisplayer : MonoBehaviour
     {
         if (showText)
         {
-            skipText = skipButton.IsPressed(); // holding down the key should speed up text
-
             if (textDisplayFinished)
                 textButton.color = IsOddTime(.75f) ? Color.white : Color.clear;
             else
@@ -157,7 +154,8 @@ public class TextBoxDisplayer : MonoBehaviour
 
             characterIndex++;
 
-            yield return null /*new WaitForSeconds(skipText ? .0001f : .01f)*/;
+            if (characterIndex % 3 == 0)
+                yield return new WaitForSeconds(.001f);
         }
 
         if (currentIndex == texts.Length - 1 && sequenceIndex != 2)

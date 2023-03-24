@@ -13,27 +13,21 @@ public class ComboCounter : MonoBehaviour
     
     void Update()
     {
-        if (IsComboBroken())    ResetCombo();
-
+        if (IsComboBroken())    combo = 0;
     }
+
     public void ComboIncrement()
     {
-      
-        if (combo >= maxCombo) ResetCombo();
         combo++;
+        combo %= maxCombo;
+
         lastHitTime = Time.time;
      //   comboCount.text = combo.ToString();
    
     }
 
-
-    void ResetCombo()
-    {
-        combo = 0;
-    }
-
     bool IsComboBroken()
     {
-        return Time.time - lastHitTime >= 1;
+        return Time.time - lastHitTime > .75f;
     }
 }

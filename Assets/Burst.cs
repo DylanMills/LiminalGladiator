@@ -7,9 +7,6 @@ using UnityEngine.InputSystem.XR;
 
 public class Burst : MonoBehaviour
 {
-    public KeyCode burstButton = KeyCode.Q; // the button to trigger the burst
-
-
     [SerializeField]
     public ParticleSystem particles;
     private bool isBursting = false; // flag to check if player is currently bursting
@@ -63,25 +60,21 @@ public class Burst : MonoBehaviour
         isAttacking = false;//The attacking process has ended.
     }
 
-
-
-
-
-    // update method to check for input and trigger burst
-    void Update()
+    // called from PlayerController upon a burst input action
+    public void InputBurst(Animator animator, int hash)
     {
-        if (Input.GetKeyDown(burstButton) && !isBursting)
+        if (playerAttributes.fullMeter)
         {
-            if (playerAttributes.fullMeter)
-            {
-                StartCoroutine(DoBurst());
-            }
+            animator.SetTrigger(hash);
+            StartCoroutine(DoBurst());
         }
     }
 
     // coroutine to perform the burst
     IEnumerator DoBurst()
     {
+        yield return new WaitForSeconds(.2f); // animation startup
+
         ActivateBurst();
         float timer = 0f;
 

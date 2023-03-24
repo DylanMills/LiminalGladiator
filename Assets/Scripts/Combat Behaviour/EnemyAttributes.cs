@@ -70,7 +70,7 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
         animator.SetTrigger("Stunned");
         body.AddForce((transform.position - playerTrans.position).normalized * knockback, ForceMode.Impulse);
-        playerAttributes.BuildMeter(damage * 5);
+        playerAttributes.BuildMeter(damage * 3);
     }
 
     void Die()

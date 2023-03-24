@@ -48,7 +48,6 @@ public class Attack : MonoBehaviour
         if (comboCounterScript.combo == 0)
         {
             StartCoroutine(Strike(baseDamage * 3, specialAttackStartup, specialAttackLength));
-            print("Special Attack!");
             animator.SetTrigger(animHash);
         }
         else
