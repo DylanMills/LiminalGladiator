@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6791193228085742814}
   - component: {fileID: 6791193228085742815}
   - component: {fileID: 7232062140331925699}
+  - component: {fileID: 6921716005329460594}
+  - component: {fileID: 7441799048604709492}
   m_Layer: 0
   m_Name: Legionaire
   m_TagString: Untagged
@@ -33,8 +35,9 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7959729083675527429}
+  - {fileID: 1538171908937837472}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6791193228085742813
 CapsuleCollider:
@@ -101,6 +104,114 @@ MonoBehaviour:
   - {fileID: 4489116163878755533}
   - {fileID: 6007160731280472139}
   - {fileID: 3031117442939861371}
+--- !u!95 &6921716005329460594
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791193228085742800}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb97c90ab00129f4b99288e68ad8569a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7441799048604709492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791193228085742800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd77e95dec1ae04b8969b72cfd88c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8698372238841804736}
+  disintegrate: 0
+  particles: {fileID: 4455076817390105065}
+--- !u!1001 &275805563575985334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 6791193228085742812}
+    m_Modifications:
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8892865
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.9629526
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.93658876
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066476824836891346, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: ShapeModule.m_SkinnedMeshRenderer
+      value: 
+      objectReference: {fileID: 2317229317242055578}
+    - target: {fileID: 4467649376975099231, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+      propertyPath: m_Name
+      value: DisintegrationParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+--- !u!4 &1538171908937837472 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1624520190139862806, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+  m_PrefabInstance: {fileID: 275805563575985334}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4455076817390105065 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4467649376975099231, guid: 4089ef4ebe68ba64bba02da6355cfd37, type: 3}
+  m_PrefabInstance: {fileID: 275805563575985334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7637007726860447470
 PrefabInstance:
   m_ObjectHideFlags: 0
