@@ -26,7 +26,7 @@ public class TextBoxDisplayer : MonoBehaviour
             "...Not a worry, you will soon remember.",
             "For now, I present to you a task: there is a camp of legionaires nearby, you must take them down.",
             "Complete this task, and return here. More will await you.",
-            "...And remember, you can move using the [WASD] keys, and perform attacks using [LEFT MOUSE] and [RIGHT MOUSE].",
+            "...And remember, you may review your controls by pressing [TAB] or [START].",
             "DEFEAT 3 LEGIONAIRES"
         },
         new string[]

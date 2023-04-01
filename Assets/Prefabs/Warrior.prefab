@@ -17735,6 +17735,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Jump Input
       m_Flags: 0
+    - m_Name: 
+      m_Id: 98fc88c4-5347-4028-b08f-45472ee3c7a7
+      m_Path: <Gamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump Input
+      m_Flags: 0
     m_Flags: 0
   jumpVelocity: 2
   distanceToGround: 0.5
@@ -17807,6 +17815,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Interact
       m_Flags: 0
+    - m_Name: 
+      m_Id: 80d4e8c7-9a44-44a8-b610-910d1db8ee22
+      m_Path: <Gamepad>/select
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
     m_Flags: 0
   _burstAction:
     m_Name: Burst
@@ -17824,6 +17840,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Burst
       m_Flags: 0
+    - m_Name: 
+      m_Id: 6bb8f5df-0a5a-4763-8f29-f8c455e32e16
+      m_Path: <Gamepad>/leftShoulder
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Burst
+      m_Flags: 0
     m_Flags: 0
   _dodgeAction:
     m_Name: Dodge
@@ -17836,6 +17860,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 47aa6409-bd95-4e35-895e-16ae7ec64c3e
       m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dodge
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 049983a6-f9aa-430b-8852-a04e843f9dc6
+      m_Path: <Gamepad>/rightShoulder
       m_Interactions: 
       m_Processors: 
       m_Groups: 
