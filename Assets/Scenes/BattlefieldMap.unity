@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2944.8809, g: 2057.7441, b: 1989.9902, a: 1}
+  m_IndirectSpecularColor: {r: 2945.2627, g: 2056.6953, b: 1986.8086, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,15 +153,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713233406717, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.31583646
+      value: -0.31583643
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713233406717, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.57527226
+      value: -0.5752722
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713233406717, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.25598517
+      value: -0.25598514
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713761490452, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: _pauseInput.m_Name
@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713800361180, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8391238
+      value: 0.8391239
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713800361180, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.x
@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713800361180, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.3988989
+      value: -0.39889896
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713800361180, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.z
@@ -233,11 +233,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713866856623, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.58502084
+      value: -0.5850209
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713866856623, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.23284566
+      value: -0.2328457
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713994936367, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalPosition.x
@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4791695713994936367, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.20902663
+      value: -0.20902662
       objectReference: {fileID: 0}
     - target: {fileID: 4791695714661926465, guid: ae850dcf070e90441911b78a4524e073, type: 3}
       propertyPath: m_YAxis.Value
@@ -7733,10 +7733,10 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 683aed1b8b54ebc43bad71dca865ad25, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 1674
   m_TreeBillboardDistance: 2000
   m_TreeCrossFadeLength: 200
-  m_TreeMaximumFullLODCount: 9014
+  m_TreeMaximumFullLODCount: 9083
   m_DetailObjectDistance: 250
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5

@@ -74,7 +74,7 @@ public class TextBoxDisplayer : MonoBehaviour
             "*The feeling grows stronger, until a collapse.*"
         }
     };
-    static DialogueType[] openPromptSequence =
+    static DialogueType[] sequenceType =
     {
         DialogueType.QUEST, DialogueType.AUTO, DialogueType.MANUAL, DialogueType.QUEST, DialogueType.AUTO, DialogueType.QUEST, DialogueType.AUTO
     };
@@ -120,8 +120,6 @@ public class TextBoxDisplayer : MonoBehaviour
 
         OpenTextbox();
         TryDisplayNextText();
-
-
     }
 
     void OpenTextbox()
@@ -194,16 +192,17 @@ public class TextBoxDisplayer : MonoBehaviour
         }
 
         if (currentIndex == texts.Length - 1)
-            switch (openPromptSequence[sequenceIndex])
+            switch (sequenceType[sequenceIndex - 1])
             {
                 case DialogueType.QUEST: 
-                    selectWindow.SetActive(true); PlayerController.textPermitted = false; break;
-                case DialogueType.MANUAL: 
+                    selectWindow.SetActive(true); 
+                    PlayerController.textPermitted = false; 
                     break;
                 case DialogueType.AUTO:
-                    if (sequenceIndex == sequenceList.Length - 1)
+                    if (sequenceIndex == sequenceList.Length)
                         endScreenScript.BeginEndScreen();
-                    PlayerController.textPermitted = true; break;
+                    PlayerController.textPermitted = true; 
+                    break;
             }
 
         textDisplayFinished = true;
