@@ -13,6 +13,7 @@ public class TextBoxDisplayer : MonoBehaviour
     [SerializeField] InputAction skipButton;
 
     [SerializeField] GameObject selectWindow;
+    [SerializeField] EndScreenDisplayer endScreenScript;
 
     PlayerController playerController;
 
@@ -24,24 +25,58 @@ public class TextBoxDisplayer : MonoBehaviour
         {
             "Welcome, weary warrior. Do you remember where you are?",
             "...Not a worry, you will soon remember.",
-            "For now, I present to you a task: there is a camp of legionaires nearby, you must take them down.",
+            "Gaze around you, for this land you find yourself within is in the heat of battle.",
+            "Thus, I present to you a task: there is a camp of legionaires nearby, you must take them down.",
             "Complete this task, and return here. More will await you.",
-            "...And remember, you may review your controls by pressing [TAB] or [START].",
-            "DEFEAT 3 LEGIONAIRES"
+            "...And remember, you may pause and review your controls by pressing [TAB] or [START].",
+            "DEFEAT 8 LEGIONAIRES"
         },
         new string[]
         {
             "A job well done indeed. Are you beginning to understand who you are?",
             "...",
-            "...No matter, simply continue along your quests and it shall occur to you.",
-            "The path is now cleared; proceed through the path just outside to reach Thermopylae fields."
+            "...No matter, continue along your quests and it will surely occur to you.",
+            "Now that you've completed a quest, return to the camp you found yourself in and declare victory."
         },
         new string[]
         {
-            "You have arrived. You know the drill.",
-            "Strike down your enemies, and this area will have been conquered.",
-            "DEFEAT 5 LEGIONARIES"
+            "Quite the feeling, no?",
+            "The path is now cleared; proceed through the route just outside to reach Thermopylae fields.",
+            "Further conquest awaits you there."
+        },
+        new string[]
+        {
+            "You have arrived. You understand the drill.",
+            "Strike down your enemies, and this area will soon be conquered.",
+            "Be wary of getting ahead of yourself now; your adversaries grow in strength.",
+            "DEFEAT 5 HIGH LEGIONARIES"
+        },
+        new string[]
+        {
+            "Excellent, excellent... don't you feel that rush returning to you?",
+            "THIS IS YOUR PURPOSE, WARRIOR!",
+            "Return once again, declare your victory, and prepare to take down the rest."
+        },
+        new string[]
+        {
+            "Are you ready, Warrior?",
+            "If your history has not occured to you yet, I am certain it will after this encounter.",
+            "Go forth. Claim this camp as your own.",
+            "DEFEAT 3 CAMP GUARDS"
+        },
+        new string[]
+        {
+            "Well done, truly.",
+            "*Suddenly, a feeling of both dread and relief runs through the warrior.*",
+            "So... you recognize these people for who they truly are, don't you?",
+            "The people...",
+            "WHO SLAUGHTERED YOU!",
+            "*The feeling grows stronger, until a collapse.*"
         }
+    };
+    static DialogueType[] openPromptSequence =
+    {
+        DialogueType.QUEST, DialogueType.AUTO, DialogueType.MANUAL, DialogueType.QUEST, DialogueType.AUTO, DialogueType.QUEST, DialogueType.AUTO
     };
     static int sequenceIndex;
 
@@ -154,12 +189,22 @@ public class TextBoxDisplayer : MonoBehaviour
 
             characterIndex++;
 
-            if (characterIndex % 3 == 0)
+            if (characterIndex % 2 == 0)
                 yield return new WaitForSeconds(.001f);
         }
 
-        if (currentIndex == texts.Length - 1 && sequenceIndex != 2)
-            selectWindow.SetActive(true);
+        if (currentIndex == texts.Length - 1)
+            switch (openPromptSequence[sequenceIndex])
+            {
+                case DialogueType.QUEST: 
+                    selectWindow.SetActive(true); PlayerController.textPermitted = false; break;
+                case DialogueType.MANUAL: 
+                    break;
+                case DialogueType.AUTO:
+                    if (sequenceIndex == sequenceList.Length - 1)
+                        endScreenScript.BeginEndScreen();
+                    PlayerController.textPermitted = true; break;
+            }
 
         textDisplayFinished = true;
     }
@@ -168,5 +213,12 @@ public class TextBoxDisplayer : MonoBehaviour
     static bool IsOddTime(float interval)
     {
         return (Time.realtimeSinceStartup % interval) / interval < .5f;
+    }
+
+    enum DialogueType
+    {
+        QUEST,
+        AUTO,
+        MANUAL
     }
 }

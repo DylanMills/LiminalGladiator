@@ -4823,6 +4823,63 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &678457391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 678457392}
+  - component: {fileID: 678457393}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &678457392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678457391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5041002017612114276}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &678457393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678457391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37719c2f0da47da4fbec3dfc736cc96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - clip: {fileID: 8300000, guid: 94ed0d829e18b014f8b8a9be6658ae77, type: 3}
+    name: hit0
+  - clip: {fileID: 8300000, guid: e65e02884d883bf45a406f3d07fe2072, type: 3}
+    name: hit1
+  - clip: {fileID: 8300000, guid: 97a9ff94cd4682f45bc285b928be1371, type: 3}
+    name: hit2
+  - clip: {fileID: 8300000, guid: fe73c67a39f677f448b38d8bd0a7ba27, type: 3}
+    name: woosh
+  - clip: {fileID: 8300000, guid: 3f86a54f5063ddf4eaefc36d578a8bc1, type: 3}
+    name: burst
+  - clip: {fileID: 8300000, guid: ee50ef31808868b40b8eb1a7b0f9ff41, type: 3}
+    name: equip
 --- !u!1 &1946310712
 GameObject:
   m_ObjectHideFlags: 0
@@ -15638,7 +15695,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4791695713233406716}
-  m_LocalRotation: {x: -0.31583643, y: -0.5752722, z: -0.25598514, w: 0.70977527}
+  m_LocalRotation: {x: 0.09478151, y: 0.06507384, z: -0.0062090857, w: 0.9933496}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15758,7 +15815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -8.6}
+  m_FollowOffset: {x: 0, y: 15.556396, z: -17.157509}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -15884,8 +15941,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4791695713800361183}
-  m_LocalRotation: {x: -0.33398193, y: -0.3988989, z: -0.15876685, w: 0.8391238}
-  m_LocalPosition: {x: 3.5959473, y: 1.5, z: -2.357666}
+  m_LocalRotation: {x: 0.15136373, y: 0.294394, z: -0.04728234, w: 0.94243604}
+  m_LocalPosition: {x: -4.398889, y: 7.7781982, z: -7.3651094}
   m_LocalScale: {x: 26.36084, y: 26.360836, z: 26.360838}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16126,7 +16183,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4791695713866856622}
-  m_LocalRotation: {x: -0.28728676, y: -0.58502084, z: -0.23284566, w: 0.7218032}
+  m_LocalRotation: {x: 0.1343107, y: 0.064774595, z: -0.008798634, w: 0.9887808}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16246,7 +16303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -8.6}
+  m_FollowOffset: {x: 0, y: 15.556396, z: -17.157509}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -16338,7 +16395,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4791695713994936366}
-  m_LocalRotation: {x: -0.25789866, y: -0.5939481, z: -0.20902663, w: 0.7328177}
+  m_LocalRotation: {x: 0.17413805, y: 0.0643663, z: -0.01140771, w: 0.98254913}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16458,7 +16515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -8.6}
+  m_FollowOffset: {x: 0, y: 15.556396, z: -17.157509}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -16552,7 +16609,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4791695714661926466}
   m_LocalRotation: {x: -0, y: 0.2351331, z: -0, w: 0.9719632}
-  m_LocalPosition: {x: 3.5959473, y: 1.5, z: -2.357666}
+  m_LocalPosition: {x: -4.398889, y: 7.7781982, z: -7.3651094}
   m_LocalScale: {x: 26.360844, y: 26.36084, z: 26.360844}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16608,9 +16665,9 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.5
+    Value: 0.8
     m_SpeedMode: 1
-    m_MaxSpeed: 0.0005
+    m_MaxSpeed: 0.5
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -16634,7 +16691,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 69.25189
     m_SpeedMode: 1
-    m_MaxSpeed: 0.08
+    m_MaxSpeed: 250
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -17583,8 +17640,9 @@ Transform:
   - {fileID: 2561357567010748661}
   - {fileID: 1514415938910510322}
   - {fileID: 1771761364239871239}
+  - {fileID: 678457392}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1375023355638444830
 Animator:
@@ -17743,23 +17801,7 @@ MonoBehaviour:
     m_Id: 94a16059-5149-46b0-a020-2163b8484b60
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 6aa1358a-314d-4094-a701-5d0f4de8d463
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Jump Input
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 98fc88c4-5347-4028-b08f-45472ee3c7a7
-      m_Path: <Gamepad>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Jump Input
-      m_Flags: 0
+    m_SingletonActionBindings: []
     m_Flags: 0
   jumpVelocity: 2
   distanceToGround: 0.5
@@ -17890,15 +17932,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Dodge
       m_Flags: 0
-    m_Flags: 0
-  _pauseInput:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2a180afd-4f2a-4bb3-b5d5-94dc6193d4f8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
     m_Flags: 0
 --- !u!114 &4791695713761490459
 MonoBehaviour:

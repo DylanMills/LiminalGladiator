@@ -36,6 +36,9 @@ public class Dodge : MonoBehaviour
     IEnumerator DoDodge()
     {
         ActivateDodge();
+
+        PlayerAudioController.PlayClip("woosh", transform.position);
+
         float timer = 0f;
         Vector3 dodgeDirection = transform.forward * dodgeDistance;
         while (timer < dodgeTime)

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.ParticleSystem;
-using UnityEngine.InputSystem.XR;
 
 public class Burst : MonoBehaviour
 {
@@ -73,7 +71,11 @@ public class Burst : MonoBehaviour
     // coroutine to perform the burst
     IEnumerator DoBurst()
     {
+        PlayerAudioController.PlayClip("equip", transform.position, 1f);
+
         yield return new WaitForSeconds(.2f); // animation startup
+
+        PlayerAudioController.PlayClip("burst", transform.position, 1f);
 
         ActivateBurst();
         float timer = 0f;

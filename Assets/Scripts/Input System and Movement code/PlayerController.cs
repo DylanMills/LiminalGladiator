@@ -55,7 +55,8 @@ public class PlayerController : MonoBehaviour
 
     // Text Prompts
     [SerializeField] InputAction _interactAction;
-    bool canInteract;
+    public static bool inTentRange;
+    public static bool textPermitted;
 
     // Abilities
     [SerializeField] InputAction _burstAction;
@@ -220,7 +221,7 @@ public class PlayerController : MonoBehaviour
 
     private void PerformInteract(InputAction.CallbackContext obj)
     {
-        if (true /* check for canInteract once implemented*/)
+        if (inTentRange && textPermitted)
         {
             var textDisplayer = FindObjectOfType<TextBoxDisplayer>();
 
@@ -276,5 +277,4 @@ public class PlayerController : MonoBehaviour
         DisableControls();
         Cursor.lockState = CursorLockMode.None;
     }
-
 }

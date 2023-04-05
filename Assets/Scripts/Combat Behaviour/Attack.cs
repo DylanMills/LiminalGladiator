@@ -55,7 +55,7 @@ public class Attack : MonoBehaviour
             StartCoroutine(Strike(baseDamage * 3, heavyAttackStartup, heavyAttackLength));
             animator.SetTrigger(animHash);
         } 
-    } 
+    }
     
 
     private IEnumerator Strike(int damage, float startup, float hitLength)
@@ -63,13 +63,15 @@ public class Attack : MonoBehaviour
         isAttacking = true;//The attacking process has started.
         yield return new WaitForSeconds(startup);
 
+        PlayerAudioController.PlayClip("woosh", transform.position);
+
         attackZone.EnableHitbox(damage);
 
         yield return new WaitForSeconds(hitLength);
 
         attackZone.DisableHitbox();
 
-        isAttacking = false;//The attacking process has ended.
+        isAttacking = false; //The attacking process has ended.
         comboCounterScript.ComboIncrement(); // increase the attack counter
     }
 }

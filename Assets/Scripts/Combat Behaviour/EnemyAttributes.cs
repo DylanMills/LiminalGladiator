@@ -70,7 +70,9 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
 
         animator.SetTrigger("Stunned");
         body.AddForce((transform.position - playerTrans.position).normalized * knockback, ForceMode.Impulse);
-        playerAttributes.BuildMeter(damage * 3);
+        playerAttributes.BuildMeter(damage * 2);
+
+        PlayerAudioController.PlayClip("hit" + UnityEngine.Random.Range(0, 2), transform.position);
     }
 
     void Die()
@@ -82,6 +84,8 @@ public class EnemyAttributes : MonoBehaviour, IDamageable
             Instantiate(healthPickupPrefab, transform.position + Vector3.up, Quaternion.identity);
 
         vanishScript.StartEffect(1.8f);
+
+        PlayerAttributes.IncreaseKillCount();
 
         enabled = false;
     }

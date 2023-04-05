@@ -13,6 +13,9 @@ public class PlayerAttributes : MonoBehaviour
     public int meter = 0;
     public bool fullMeter = false;
 
+    static int killCount;
+    static int[] killRequirements = { 8, 13, 16 };
+
     public GameObject fullMeterUI;
     private void Awake()
     {
@@ -74,6 +77,20 @@ public class PlayerAttributes : MonoBehaviour
     {
         Debug.Log("Died");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public static void IncreaseKillCount()
+    {
+        killCount++;
+
+        // complete quest if a kill requirement has been met
+        foreach (int amt in killRequirements)
+            if (killCount == amt)
+            {
+                var textDisplayer = FindObjectOfType<TextBoxDisplayer>();
+
+                textDisplayer.BeginNewDialogue();
+            }
     }
 
     private void OnTriggerEnter(Collider other)
