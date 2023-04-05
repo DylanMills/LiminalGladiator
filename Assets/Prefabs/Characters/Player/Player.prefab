@@ -5743,6 +5743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a1a2eb136b2ec48884647b7138c8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 0}
+  shockwavePrefab: {fileID: 0}
 --- !u!1 &3557453213379629360
 GameObject:
   m_ObjectHideFlags: 0
@@ -10737,6 +10739,24 @@ MonoBehaviour:
       m_Action: Interact
       m_Flags: 0
     m_Flags: 0
+  _burstAction:
+    m_Name: Burst
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d3519316-99ee-485f-9bb7-e9909ab4bff4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _dodgeAction:
+    m_Name: Dodge
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 316a49c4-d64f-403f-a1ef-06ea7aef8657
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!136 &2402444809768114268
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10786,8 +10806,11 @@ MonoBehaviour:
   attackLength: 0.2
   heavyAttackStartup: 0.4
   heavyAttackLength: 0.6
+  specialAttackStartup: 0
+  specialAttackLength: 0
   attackZone: {fileID: 3557453213295611499}
   isAttacking: 0
+  comboCounterScript: {fileID: 0}
 --- !u!114 &4098643610785306248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10801,6 +10824,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  meter: 0
+  fullMeter: 0
+  fullMeterUI: {fileID: 0}
 --- !u!114 &2191848322787819656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10813,8 +10839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03897e99ae7cb3b4fa3453861aeadb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAttackCombo: 1
-  attackCombo: 0
+  maxCombo: 0
   combo: 0
 --- !u!1 &6443707516656655019
 GameObject:

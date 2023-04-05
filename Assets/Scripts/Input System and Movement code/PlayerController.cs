@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
     Burst burstScript;
     Dodge dodgeScript;
     
-
     // Input Vectors
     Vector2 moveInput;
     Vector3 moveVector;
@@ -258,6 +257,7 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
     }
+
     public void DisableControls()
     {
         _movementInput.Disable();
@@ -276,4 +276,5 @@ public class PlayerController : MonoBehaviour
         DisableControls();
         Cursor.lockState = CursorLockMode.None;
     }
+
 }
